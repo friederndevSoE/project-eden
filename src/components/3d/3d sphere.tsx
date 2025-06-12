@@ -89,16 +89,49 @@ const Dot = ({
   );
 };
 
-const getDotPositions = (count: number, radius: number) => {
+const getDotPositions = (
+  count: number,
+  baseRadius: number,
+  minDistance: number = 0.2,
+  maxAttemptsPerDot: number = 50
+): [number, number, number][] => {
   const positions: [number, number, number][] = [];
+
+  const getDistance = (
+    a: [number, number, number],
+    b: [number, number, number]
+  ) => {
+    const dx = a[0] - b[0];
+    const dy = a[1] - b[1];
+    const dz = a[2] - b[2];
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+  };
+
   for (let i = 0; i < count; i++) {
-    const phi = Math.acos(2 * Math.random() - 1);
-    const theta = 2 * Math.PI * Math.random();
-    const x = radius * Math.sin(phi) * Math.cos(theta);
-    const y = radius * Math.sin(phi) * Math.sin(theta);
-    const z = radius * Math.cos(phi);
-    positions.push([x, y, z]);
+    let attempt = 0;
+    let valid = false;
+    let newPos: [number, number, number] = [0, 0, 0];
+
+    while (!valid && attempt < maxAttemptsPerDot) {
+      const phi = Math.acos(2 * Math.random() - 1);
+      const theta = 2 * Math.PI * Math.random();
+      const jitter = (Math.random() - 0.5) * 0.4; // +/- 0.2 variation, which make the distance between dots and the center one more random
+      const radius = baseRadius + jitter;
+      const x = radius * Math.sin(phi) * Math.cos(theta);
+      const y = radius * Math.sin(phi) * Math.sin(theta);
+      const z = radius * Math.cos(phi);
+
+      newPos = [x, y, z];
+
+      // Check distance against all existing positions
+      valid = positions.every((pos) => getDistance(pos, newPos) >= minDistance);
+      attempt++;
+    }
+
+    // After max attempts, add it anyway to avoid infinite loop
+    positions.push(newPos);
   }
+
   return positions;
 };
 
@@ -111,7 +144,7 @@ const RotatingSphere = ({
   const rotationSpeed = 0.0003; //adjust rotation speed as needed
 
   //change the first number to allow the maximum amount of dots
-  const dotPositions = useMemo(() => getDotPositions(6, 1.2), []);
+  const dotPositions = useMemo(() => getDotPositions(6, 1.2, 0.3), []);
 
   useFrame(() => {
     if (sphereRef.current) {
