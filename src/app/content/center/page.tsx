@@ -1,18 +1,19 @@
+"use client";
 import React from "react";
-import Link from "next/link";
 
-const Center = () => {
+const ProjectModalContent = ({
+  projectId,
+}: {
+  projectId: number | "center" | null;
+}) => {
+  if (projectId === "center") return <p>This is the center project info.</p>;
+
   return (
-    <div className="w-screen h-screen bg-white border-2 border-red-300">
-      <Link
-        href="/"
-        className="inline-block mb-4 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300"
-      >
-        ← Back to Sphere
-      </Link>
-      <h1 className="text-xl font-bold">CENTER</h1>
+    <div>
+      <h2 className="text-xl font-bold mb-2">Project {projectId}</h2>
+      <p>This is detailed content for project {projectId}. Customize freely!</p>
     </div>
   );
 };
 
-export default Center;
+export default ProjectModalContent;

@@ -7,6 +7,61 @@ import { createPortal } from "react-dom";
 import * as THREE from "three";
 import dynamic from "next/dynamic";
 
+import { motion, AnimatePresence } from "framer-motion";
+
+// Animated Modal component
+const AnimatedModal = ({
+  isOpen,
+  onClose,
+  projectId,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  projectId: number | "center" | null;
+}) => {
+  const id = useMemo(() => {
+    if (projectId === "center") return "center";
+    if (typeof projectId === "number") return `project-${projectId}`;
+    return null;
+  }, [projectId]);
+
+  const DynamicContent = useMemo(() => {
+    if (!id) return null;
+    return dynamic(() => import(`@/app/content/${id}/page`), { ssr: false });
+  }, [id]);
+
+  if (!isOpen || !DynamicContent) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.div
+          className="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-lg relative"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 text-gray-700 hover:text-black text-lg"
+          >
+            ×
+          </button>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DynamicContent />
+          </Suspense>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
 const Dot = ({
   position,
   onClick,
@@ -50,11 +105,13 @@ const getDotPositions = (count: number, radius: number) => {
 const RotatingSphere = ({
   onDotClick,
 }: {
-  onDotClick: (id: string) => void;
+  onDotClick: (id: number | "center") => void;
 }) => {
-  const sphereRef = useRef<THREE.Mesh>(null);
-  const rotationSpeed = 0.001;
-  const dotPositions = useMemo(() => getDotPositions(5, 1.2), []);
+  const sphereRef = useRef<THREE.Group>(null);
+  const rotationSpeed = 0.0003; //adjust rotation speed as needed
+
+  //change the first number to allow the maximum amount of dots
+  const dotPositions = useMemo(() => getDotPositions(6, 1.2), []);
 
   useFrame(() => {
     if (sphereRef.current) {
@@ -66,11 +123,7 @@ const RotatingSphere = ({
     <>
       <group ref={sphereRef}>
         {dotPositions.map((pos, i) => (
-          <Dot
-            key={i}
-            position={pos}
-            onClick={() => onDotClick(`project-${i + 1}`)}
-          />
+          <Dot key={i} position={pos} onClick={() => onDotClick(i + 1)} />
         ))}
       </group>
       <Dot position={[0, 0, 0]} onClick={() => onDotClick("center")} />
@@ -103,35 +156,49 @@ const Modal = ({ id, onClose }: { id: string; onClose: () => void }) => {
 };
 
 export default function InteractiveSphere() {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeProjectId, setActiveProjectId] = useState<
+    number | "center" | null
+  >(null);
+
+  const openModal = (id: number | "center") => {
+    setActiveProjectId(id);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setTimeout(() => setActiveProjectId(null), 300);
+  };
 
   return (
-    <>
-      <div className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[5, 5, 5]} />
-          <OrbitControls
-            enablePan={false}
-            enableZoom={true}
-            minDistance={2}
-            maxDistance={13}
-          />
-          <Stars
-            radius={50}
-            depth={60}
-            count={3000}
-            factor={2}
-            fade
-            speed={0.5}
-          />
-          <RotatingSphere onDotClick={(id) => setSelectedProject(id)} />
-        </Canvas>
-      </div>
+    <div className="fixed inset-0 z-0">
+      <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[5, 5, 5]} />
+        <OrbitControls
+          enablePan={false}
+          enableZoom={true}
+          minDistance={2}
+          maxDistance={13}
+        />
+        <Stars
+          radius={50}
+          depth={60}
+          count={3000}
+          factor={2}
+          fade
+          speed={0.5}
+        />
+        <RotatingSphere onDotClick={openModal} />
+      </Canvas>
 
-      {selectedProject && (
-        <Modal id={selectedProject} onClose={() => setSelectedProject(null)} />
-      )}
-    </>
+      {/* Animated Modal */}
+      <AnimatedModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        projectId={activeProjectId}
+      />
+    </div>
   );
 }
