@@ -1,26 +1,36 @@
 "use client";
 
 import React, { useRef, useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html, Stars } from "@react-three/drei";
 import { useCursor } from "@react-three/drei";
 
 import * as THREE from "three";
 
-type DotProps = {
+// type DotProps = {
+//   position: [number, number, number];
+//   label: string;
+//   onClick: () => void;
+// };
+
+const Dot = ({
+  position,
+  label,
+  route,
+}: {
   position: [number, number, number];
   label: string;
-  onClick: () => void;
-};
-
-const Dot = ({ position, label, onClick }: DotProps) => {
+  route: string;
+}) => {
   const [hovered, setHovered] = useState(false);
-  useCursor(hovered); // changes cursor to pointer
+  useCursor(hovered);
+  const router = useRouter();
 
   return (
     <mesh
       position={position}
-      onClick={onClick}
+      onClick={() => router.push(route)}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
@@ -34,12 +44,12 @@ const Dot = ({ position, label, onClick }: DotProps) => {
   );
 };
 
-const generateRandomDotPositions = (radius: number, count: number) => {
+const getDotPositions = (count: number, radius: number) => {
   const positions: [number, number, number][] = [];
 
   for (let i = 0; i < count; i++) {
-    const phi = Math.acos(2 * Math.random() - 1); // vertical angle (latitude)
-    const theta = 2 * Math.PI * Math.random(); // horizontal angle (longitude)
+    const phi = Math.acos(2 * Math.random() - 1);
+    const theta = 2 * Math.PI * Math.random();
 
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.sin(phi) * Math.sin(theta);
@@ -51,95 +61,56 @@ const generateRandomDotPositions = (radius: number, count: number) => {
   return positions;
 };
 
-const RotatingSphere = ({
-  onDotClick,
-}: {
-  onDotClick: (label: string) => void;
-}) => {
-  const groupRef = useRef<THREE.Group>(null!);
+const RotatingSphere = () => {
+  const sphereRef = useRef<THREE.Mesh>(null);
+  const rotationSpeed = 0.001;
+  const dotPositions = useMemo(() => getDotPositions(5, 1.2), []);
 
   useFrame(() => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += 0.0003;
-      groupRef.current.rotation.x += 0.0002;
+    if (sphereRef.current) {
+      sphereRef.current.rotation.y += rotationSpeed;
     }
   });
 
-  const dotPositions = useMemo(() => generateRandomDotPositions(1, 5), []);
-
   return (
-    <group ref={groupRef}>
-      {/* Invisible transparent sphere */}
-      <mesh>
-        {/* <sphereGeometry args={[1, 64, 64]} /> */}
-        <sphereGeometry args={[0, 0, 0]} />
+    <>
+      <group ref={sphereRef}>
+        {dotPositions.map((pos, i) => (
+          <Dot
+            key={i}
+            position={pos}
+            label={`Outer Dot ${i + 1}`}
+            route={`/content/project-${i + 1}`}
+          />
+        ))}
+      </group>
 
-        <meshStandardMaterial transparent opacity={0} />
-      </mesh>
-
-      {/* Dots on sphere surface */}
-
-      {dotPositions.map((pos, i) => (
-        <Dot
-          key={i}
-          position={pos}
-          label={`Outer Dot ${i + 1}`}
-          onClick={() => onDotClick(`You clicked on outer dot ${i + 1}`)}
-        />
-      ))}
-
-      {/* Center dot */}
-      <Dot
-        position={[0, 0, 0]}
-        label="Center Dot"
-        onClick={() => onDotClick("You clicked on the center dot")}
-      />
-    </group>
+      <Dot position={[0, 0, 0]} label="Center Dot" route="/content/center" />
+    </>
   );
 };
 
 export default function InteractiveSphere() {
-  const [popupText, setPopupText] = useState<string | null>(null);
-
-  const handleDotClick = (label: string) => {
-    setPopupText(label);
-  };
-
   return (
     <div className="fixed inset-0 z-0">
-      {/* Pop-up */}
-      {popupText && (
-        <div className="absolute left-1/2 top-5 transform -translate-x-1/2 z-10 bg-white text-black px-4 py-2 rounded shadow-md">
-          <button
-            className="absolute right-2 top-1 text-sm"
-            onClick={() => setPopupText(null)}
-          >
-            ✕
-          </button>
-          {popupText}
-        </div>
-      )}
-
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[5, 5, 5]} />
         <OrbitControls
           enablePan={false}
           enableZoom={true}
-          autoRotate={false}
           minDistance={2}
           maxDistance={13}
         />
-        {/* background stars styling */}
         <Stars
           radius={50}
           depth={60}
-          count={3000} // reduced from 5000
+          count={3000}
           factor={2}
           fade
           speed={0.5}
         />
-        <RotatingSphere onDotClick={handleDotClick} />
+        <RotatingSphere />
       </Canvas>
     </div>
   );

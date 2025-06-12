@@ -8,9 +8,8 @@ const Scene3D = dynamic(() => import("../components/3d/test3d"), {
 export default function Home() {
   return (
     <>
-      <h1>Elysia</h1>
-      {/* <Scene3D /> */}
       <InteractiveSphere />
+      <h1 className="w-full m-auto text-center">For Elysia</h1>
     </>
   );
 }
