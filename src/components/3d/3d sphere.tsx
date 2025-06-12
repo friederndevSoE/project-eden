@@ -34,16 +34,6 @@ const Dot = ({ position, label, onClick }: DotProps) => {
   );
 };
 
-// const positionsOnSphere = (radius: number) => {
-//   return [
-//     [radius, 0, 0],
-//     [0, radius, 0],
-//     [0, 0, radius],
-//     [-radius, 0, 0],
-//     [0, -radius, 0],
-//   ] as [number, number, number][];
-// };
-
 const generateRandomDotPositions = (radius: number, count: number) => {
   const positions: [number, number, number][] = [];
 
