@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 //for animations
 import { motion, AnimatePresence } from "framer-motion";
 
+import CommandBar from "../CommandBar";
+
 // Animated Modal component
 const AnimatedModal = ({
   isOpen,
@@ -194,6 +196,7 @@ export default function InteractiveSphere() {
   const [activeProjectId, setActiveProjectId] = useState<
     number | "center" | null
   >(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const openModal = (id: number | "center") => {
     setActiveProjectId(id);
@@ -206,7 +209,8 @@ export default function InteractiveSphere() {
   };
 
   return (
-    <div className="fixed inset-0 z-0">
+    <div className="fixed inset-0 z-0 text-red-800">
+      {/* 3D Canvas */}
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[5, 5, 5]} />
@@ -226,6 +230,20 @@ export default function InteractiveSphere() {
         />
         <RotatingSphere onDotClick={openModal} />
       </Canvas>
+
+      {/* 🔍 Floating Search Button */}
+      <button
+        className="fixed bottom-6 right-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-50"
+        onClick={() => setIsSearchOpen(true)}
+      >
+        Search
+      </button>
+
+      {/* 🔎 Command Bar Search */}
+      <CommandBar
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+      />
 
       {/* Animated Modal */}
       <AnimatedModal

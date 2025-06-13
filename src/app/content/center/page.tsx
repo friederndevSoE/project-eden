@@ -12,6 +12,7 @@ const ProjectModalContent = ({
     <div>
       <h2 className="text-xl font-bold mb-2">Project {projectId}</h2>
       <p>This is detailed content for project {projectId}. Customize freely!</p>
+      <p>test content </p>
     </div>
   );
 };
