@@ -1,69 +1,12 @@
 "use client";
 
-import React, { useRef, useState, useMemo, Suspense } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars, useCursor } from "@react-three/drei";
-// import { createPortal } from "react-dom";
 import * as THREE from "three";
-import dynamic from "next/dynamic";
-
-//for animations
-import { motion, AnimatePresence } from "framer-motion";
 
 import CommandBar from "../CommandBar";
-
-// Animated Modal component
-const AnimatedModal = ({
-  isOpen,
-  onClose,
-  projectId,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  projectId: number | "center" | null;
-}) => {
-  const id = useMemo(() => {
-    if (projectId === "center") return "center";
-    if (typeof projectId === "number") return `project-${projectId}`;
-    return null;
-  }, [projectId]);
-
-  const DynamicContent = useMemo(() => {
-    if (!id) return null;
-    return dynamic(() => import(`@/app/content/${id}/page`), { ssr: false });
-  }, [id]);
-
-  if (!isOpen || !DynamicContent) return null;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <motion.div
-          className="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-lg relative"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.8, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 text-gray-700 hover:text-black text-lg"
-          >
-            ×
-          </button>
-          <Suspense fallback={<div>Loading...</div>}>
-            <DynamicContent />
-          </Suspense>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+import { useModal } from "@/app/context/ModalContext";
 
 const Dot = ({
   position,
@@ -167,7 +110,6 @@ const RotatingSphere = ({
   );
 };
 
-// const Modal = ({ id, onClose }: { id: string; onClose: () => void }) => {
 //   const DynamicContent = useMemo(
 //     () => dynamic(() => import(`@/app/content/${id}/page`), { ssr: false }),
 //     [id]
@@ -192,21 +134,9 @@ const RotatingSphere = ({
 // };
 
 export default function InteractiveSphere() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [activeProjectId, setActiveProjectId] = useState<
-    number | "center" | null
-  >(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const openModal = (id: number | "center") => {
-    setActiveProjectId(id);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setTimeout(() => setActiveProjectId(null), 300);
-  };
+  const { openModal } = useModal();
 
   return (
     <div className="fixed inset-0 z-0 text-red-800">
@@ -221,7 +151,7 @@ export default function InteractiveSphere() {
           maxDistance={13}
         />
         <Stars
-          radius={50}
+          radius={40}
           depth={60}
           count={3000}
           factor={2}
@@ -243,13 +173,6 @@ export default function InteractiveSphere() {
       <CommandBar
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-      />
-
-      {/* Animated Modal */}
-      <AnimatedModal
-        isOpen={modalOpen}
-        onClose={closeModal}
-        projectId={activeProjectId}
       />
     </div>
   );

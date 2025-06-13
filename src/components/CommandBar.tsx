@@ -1,9 +1,9 @@
 "use client";
 
 import { Command, CommandInput, CommandItem, CommandList } from "cmdk";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { projectSearchData } from "@/app/content/projectSearchData";
+import { useModal } from "@/app/context/ModalContext";
 
 export default function CommandBar({
   isOpen,
@@ -12,9 +12,9 @@ export default function CommandBar({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const router = useRouter();
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const { openModal } = useModal(); // ✅ Get openModal from context
 
   // Focus input when CommandBar opens
   useEffect(() => {
@@ -23,16 +23,14 @@ export default function CommandBar({
     }
   }, [isOpen]);
 
-  // Shortcut to close
+  // Shortcut 'esc' to close
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleKey);
-    }
+    window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [isOpen]);
+  }, [onClose]);
 
   // Filtered by tags only, shown only when user typed
   const filteredResults =
@@ -74,11 +72,7 @@ export default function CommandBar({
                 <CommandItem
                   key={project.id}
                   onSelect={() => {
-                    router.push(
-                      project.id === "center"
-                        ? "/content/center"
-                        : `content/project-${project.id}/`
-                    );
+                    openModal(project.id); // ✅ Use modal from context
                     onClose();
                   }}
                   className="px-3 py-2 cursor-pointer aria-selected:bg-gray-200 aria-selected:text-black rounded"
