@@ -3,10 +3,11 @@
 import React, { useRef, useState, useMemo, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars, useCursor } from "@react-three/drei";
-import { createPortal } from "react-dom";
+// import { createPortal } from "react-dom";
 import * as THREE from "three";
 import dynamic from "next/dynamic";
 
+//for animations
 import { motion, AnimatePresence } from "framer-motion";
 
 // Animated Modal component
@@ -164,29 +165,29 @@ const RotatingSphere = ({
   );
 };
 
-const Modal = ({ id, onClose }: { id: string; onClose: () => void }) => {
-  const DynamicContent = useMemo(
-    () => dynamic(() => import(`@/app/content/${id}/page`), { ssr: false }),
-    [id]
-  );
+// const Modal = ({ id, onClose }: { id: string; onClose: () => void }) => {
+//   const DynamicContent = useMemo(
+//     () => dynamic(() => import(`@/app/content/${id}/page`), { ssr: false }),
+//     [id]
+//   );
 
-  return createPortal(
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-      <div className="bg-white rounded-lg max-w-4xl w-full h-[90vh] overflow-auto p-4 relative">
-        <button
-          className="absolute top-4 right-4 text-black z-10"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-        <Suspense fallback={<p className="text-black">Loading...</p>}>
-          <DynamicContent />
-        </Suspense>
-      </div>
-    </div>,
-    document.body
-  );
-};
+//   return createPortal(
+//     <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
+//       <div className="bg-white rounded-lg max-w-4xl w-full h-[90vh] overflow-auto p-4 relative">
+//         <button
+//           className="absolute top-4 right-4 text-black z-10"
+//           onClick={onClose}
+//         >
+//           ✕
+//         </button>
+//         <Suspense fallback={<p className="text-black">Loading...</p>}>
+//           <DynamicContent />
+//         </Suspense>
+//       </div>
+//     </div>,
+//     document.body
+//   );
+// };
 
 export default function InteractiveSphere() {
   const [modalOpen, setModalOpen] = useState(false);
