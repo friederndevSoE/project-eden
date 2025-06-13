@@ -110,29 +110,6 @@ const RotatingSphere = ({
   );
 };
 
-//   const DynamicContent = useMemo(
-//     () => dynamic(() => import(`@/app/content/${id}/page`), { ssr: false }),
-//     [id]
-//   );
-
-//   return createPortal(
-//     <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center">
-//       <div className="bg-white rounded-lg max-w-4xl w-full h-[90vh] overflow-auto p-4 relative">
-//         <button
-//           className="absolute top-4 right-4 text-black z-10"
-//           onClick={onClose}
-//         >
-//           ✕
-//         </button>
-//         <Suspense fallback={<p className="text-black">Loading...</p>}>
-//           <DynamicContent />
-//         </Suspense>
-//       </div>
-//     </div>,
-//     document.body
-//   );
-// };
-
 export default function InteractiveSphere() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
