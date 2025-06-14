@@ -8,6 +8,8 @@ import * as THREE from "three";
 import CommandBar from "../CommandBar";
 import { useModal } from "@/app/context/ModalContext";
 
+import { projectSearchData } from "@/app/content/projectSearchData";
+
 // Project data types and data
 export type ProjectId = number | "center";
 export type ProjectMeta = {
@@ -17,45 +19,6 @@ export type ProjectMeta = {
   description?: string;
 };
 
-export const projectSearchData: ProjectMeta[] = [
-  {
-    id: "center",
-    title: "Overview",
-    tags: ["Elysia"],
-  },
-  {
-    id: 1,
-    title: "Project One",
-    tags: ["Kevin"],
-  },
-  {
-    id: 2,
-    title: "Project Two",
-    tags: ["Aponia"],
-  },
-  {
-    id: 3,
-    title: "Project Three",
-    tags: ["Eden"],
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    tags: ["Vill-V"],
-  },
-  {
-    id: 5,
-    title: "Project Five",
-    tags: ["Kalpas"],
-  },
-  {
-    id: 6,
-    title: "Project Six",
-    tags: ["Su"],
-  },
-];
-
-// Tooltip component with higher z-index and better positioning
 const Tooltip = ({
   visible,
   position,
@@ -94,8 +57,6 @@ const Dot = ({
   onHover: (hovered: boolean, mousePos?: { x: number; y: number }) => void;
 }) => {
   const [hovered, setHovered] = useState(false);
-  // Remove useCursor to avoid conflicts
-  // useCursor(hovered);
 
   const handlePointerOver = (event: any) => {
     setHovered(true);
@@ -247,21 +208,14 @@ export default function InteractiveSphere() {
     mousePos?: { x: number; y: number }
   ) => {
     if (hovered && id !== null && mousePos) {
-      // Hardcode some text for testing first
-      let content = "";
-      if (id === "center") {
-        content = "Elysia - Center Overview";
-      } else if (id === 1) {
-        content = "Kevin - Project One";
-      } else if (id === 2) {
-        content = "Aponia - Project Two";
-      } else {
-        content = `Project ${id} - Hardcoded Text`;
-      }
+      const project = projectSearchData.find((p) => p.id === id);
+      const content = project ? `${project.tags}` : `Unknown Project (${id})`;
+
+      // ? `${project.tags.join(", ")} - ${project.title}` if want to use both tags and title
 
       setTooltip({
         visible: true,
-        content: content,
+        content,
         position: mousePos,
       });
     } else {
@@ -291,11 +245,6 @@ export default function InteractiveSphere() {
         />
         <RotatingSphere onDotClick={openModal} onDotHover={handleDotHover} />
       </Canvas>
-
-      {/* Debug: Always visible tooltip for testing */}
-      <div className="fixed top-4 left-4 bg-red-500 text-white px-3 py-2 rounded z-50">
-        Debug: Tooltip should appear here
-      </div>
 
       {/* Tooltip - moved outside canvas with highest z-index */}
       <Tooltip
