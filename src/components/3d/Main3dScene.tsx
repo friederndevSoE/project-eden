@@ -8,28 +8,129 @@ import * as THREE from "three";
 import CommandBar from "../CommandBar";
 import { useModal } from "@/app/context/ModalContext";
 
+// Project data types and data
+export type ProjectId = number | "center";
+export type ProjectMeta = {
+  id: ProjectId;
+  title: string;
+  tags: string[];
+  description?: string;
+};
+
+export const projectSearchData: ProjectMeta[] = [
+  {
+    id: "center",
+    title: "Overview",
+    tags: ["Elysia"],
+  },
+  {
+    id: 1,
+    title: "Project One",
+    tags: ["Kevin"],
+  },
+  {
+    id: 2,
+    title: "Project Two",
+    tags: ["Aponia"],
+  },
+  {
+    id: 3,
+    title: "Project Three",
+    tags: ["Eden"],
+  },
+  {
+    id: 4,
+    title: "Project Four",
+    tags: ["Vill-V"],
+  },
+  {
+    id: 5,
+    title: "Project Five",
+    tags: ["Kalpas"],
+  },
+  {
+    id: 6,
+    title: "Project Six",
+    tags: ["Su"],
+  },
+];
+
+// Tooltip component with higher z-index and better positioning
+const Tooltip = ({
+  visible,
+  position,
+  content,
+}: {
+  visible: boolean;
+  position: { x: number; y: number };
+  content: string;
+}) => {
+  if (!visible) return null;
+
+  return (
+    <div
+      className="fixed pointer-events-none bg-white text-black px-3 py-2 rounded-lg shadow-lg border text-sm font-medium"
+      style={{
+        left: position.x + 15,
+        top: position.y - 40,
+        zIndex: 9999,
+        transform: "translate(0, 0)", // Ensure no transform conflicts
+      }}
+    >
+      {content}
+    </div>
+  );
+};
+
 const Dot = ({
   position,
+  id,
   onClick,
+  onHover,
 }: {
   position: [number, number, number];
+  id: ProjectId;
   onClick: () => void;
+  onHover: (hovered: boolean, mousePos?: { x: number; y: number }) => void;
 }) => {
   const [hovered, setHovered] = useState(false);
-  useCursor(hovered);
+  // Remove useCursor to avoid conflicts
+  // useCursor(hovered);
+
+  const handlePointerOver = (event: any) => {
+    setHovered(true);
+    // Get mouse position relative to viewport
+    onHover(true, { x: event.clientX, y: event.clientY });
+    // Change cursor manually
+    document.body.style.cursor = "pointer";
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+    onHover(false);
+    // Reset cursor
+    document.body.style.cursor = "default";
+  };
+
+  const handlePointerMove = (event: any) => {
+    if (hovered) {
+      onHover(true, { x: event.clientX, y: event.clientY });
+    }
+  };
 
   return (
     <mesh
       position={position}
       onClick={onClick}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+      onPointerMove={handlePointerMove}
     >
       <sphereGeometry args={[0.05, 16, 16]} />
       <meshStandardMaterial
         color="hotpink"
         emissive="hotpink"
-        emissiveIntensity={0.5}
+        emissiveIntensity={hovered ? 0.8 : 0.5}
       />
     </mesh>
   );
@@ -61,7 +162,7 @@ const getDotPositions = (
     while (!valid && attempt < maxAttemptsPerDot) {
       const phi = Math.acos(2 * Math.random() - 1);
       const theta = 2 * Math.PI * Math.random();
-      const jitter = (Math.random() - 0.5) * 0.4; // +/- 0.2 variation, which make the distance between dots and the center one more random
+      const jitter = (Math.random() - 0.5) * 0.4;
       const radius = baseRadius + jitter;
       const x = radius * Math.sin(phi) * Math.cos(theta);
       const y = radius * Math.sin(phi) * Math.sin(theta);
@@ -69,12 +170,10 @@ const getDotPositions = (
 
       newPos = [x, y, z];
 
-      // Check distance against all existing positions
       valid = positions.every((pos) => getDistance(pos, newPos) >= minDistance);
       attempt++;
     }
 
-    // After max attempts, add it anyway to avoid infinite loop
     positions.push(newPos);
   }
 
@@ -83,13 +182,18 @@ const getDotPositions = (
 
 const RotatingSphere = ({
   onDotClick,
+  onDotHover,
 }: {
-  onDotClick: (id: number | "center") => void;
+  onDotClick: (id: ProjectId) => void;
+  onDotHover: (
+    id: ProjectId | null,
+    hovered: boolean,
+    mousePos?: { x: number; y: number }
+  ) => void;
 }) => {
   const sphereRef = useRef<THREE.Group>(null);
-  const rotationSpeed = 0.0003; //adjust rotation speed as needed
+  const rotationSpeed = 0.0003;
 
-  //change the first number to allow the maximum amount of dots
   const dotPositions = useMemo(() => getDotPositions(6, 1.2, 0.3), []);
 
   useFrame(() => {
@@ -102,18 +206,68 @@ const RotatingSphere = ({
     <>
       <group ref={sphereRef}>
         {dotPositions.map((pos, i) => (
-          <Dot key={i} position={pos} onClick={() => onDotClick(i + 1)} />
+          <Dot
+            key={i}
+            position={pos}
+            id={i + 1}
+            onClick={() => onDotClick(i + 1)}
+            onHover={(hovered, mousePos) =>
+              onDotHover(i + 1, hovered, mousePos)
+            }
+          />
         ))}
       </group>
-      <Dot position={[0, 0, 0]} onClick={() => onDotClick("center")} />
+      <Dot
+        position={[0, 0, 0]}
+        id="center"
+        onClick={() => onDotClick("center")}
+        onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
+      />
     </>
   );
 };
 
 export default function InteractiveSphere() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [tooltip, setTooltip] = useState<{
+    visible: boolean;
+    content: string;
+    position: { x: number; y: number };
+  }>({
+    visible: false,
+    content: "",
+    position: { x: 0, y: 0 },
+  });
 
   const { openModal } = useModal();
+
+  const handleDotHover = (
+    id: ProjectId | null,
+    hovered: boolean,
+    mousePos?: { x: number; y: number }
+  ) => {
+    if (hovered && id !== null && mousePos) {
+      // Hardcode some text for testing first
+      let content = "";
+      if (id === "center") {
+        content = "Elysia - Center Overview";
+      } else if (id === 1) {
+        content = "Kevin - Project One";
+      } else if (id === 2) {
+        content = "Aponia - Project Two";
+      } else {
+        content = `Project ${id} - Hardcoded Text`;
+      }
+
+      setTooltip({
+        visible: true,
+        content: content,
+        position: mousePos,
+      });
+    } else {
+      setTooltip((prev) => ({ ...prev, visible: false }));
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-0 text-red-800">
@@ -135,12 +289,24 @@ export default function InteractiveSphere() {
           fade
           speed={0.5}
         />
-        <RotatingSphere onDotClick={openModal} />
+        <RotatingSphere onDotClick={openModal} onDotHover={handleDotHover} />
       </Canvas>
+
+      {/* Debug: Always visible tooltip for testing */}
+      <div className="fixed top-4 left-4 bg-red-500 text-white px-3 py-2 rounded z-50">
+        Debug: Tooltip should appear here
+      </div>
+
+      {/* Tooltip - moved outside canvas with highest z-index */}
+      <Tooltip
+        visible={tooltip.visible}
+        position={tooltip.position}
+        content={tooltip.content}
+      />
 
       {/* 🔍 Floating Search Button */}
       <button
-        className="fixed bottom-6 right-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-50"
+        className="fixed bottom-6 right-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-40"
         onClick={() => setIsSearchOpen(true)}
       >
         Search
