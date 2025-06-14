@@ -23,21 +23,23 @@ const Tooltip = ({
   visible,
   position,
   content,
+  color,
 }: {
   visible: boolean;
   position: { x: number; y: number };
   content: string;
+  color: string;
 }) => {
   if (!visible) return null;
 
   return (
     <div
-      className="fixed pointer-events-none bg-white text-black px-3 py-2 rounded-lg shadow-lg border text-sm font-medium"
+      className="fixed pointer-events-none text-white px-3 py-2 rounded-lg shadow-lg  text-sm font-medium"
       style={{
         left: position.x + 15,
         top: position.y - 40,
         zIndex: 9999,
-        transform: "translate(0, 0)", // Ensure no transform conflicts
+        backgroundColor: color,
       }}
     >
       {content}
@@ -193,10 +195,12 @@ export default function InteractiveSphere() {
   const [tooltip, setTooltip] = useState<{
     visible: boolean;
     content: string;
+    color: string;
     position: { x: number; y: number };
   }>({
     visible: false,
     content: "",
+    color: "#000000",
     position: { x: 0, y: 0 },
   });
 
@@ -213,10 +217,13 @@ export default function InteractiveSphere() {
 
       // ? `${project.tags.join(", ")} - ${project.title}` if want to use both tags and title
 
+      const color = project?.color || "#000";
+
       setTooltip({
         visible: true,
         content,
         position: mousePos,
+        color,
       });
     } else {
       setTooltip((prev) => ({ ...prev, visible: false }));
@@ -251,6 +258,7 @@ export default function InteractiveSphere() {
         visible={tooltip.visible}
         position={tooltip.position}
         content={tooltip.content}
+        color={tooltip.color}
       />
 
       {/* 🔍 Floating Search Button */}
