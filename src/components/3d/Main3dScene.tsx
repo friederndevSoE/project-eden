@@ -50,11 +50,13 @@ const Tooltip = ({
 const Dot = ({
   position,
   id,
+  color,
   onClick,
   onHover,
 }: {
   position: [number, number, number];
   id: ProjectId;
+  color: string;
   onClick: () => void;
   onHover: (hovered: boolean, mousePos?: { x: number; y: number }) => void;
 }) => {
@@ -62,16 +64,13 @@ const Dot = ({
 
   const handlePointerOver = (event: any) => {
     setHovered(true);
-    // Get mouse position relative to viewport
     onHover(true, { x: event.clientX, y: event.clientY });
-    // Change cursor manually
     document.body.style.cursor = "pointer";
   };
 
   const handlePointerOut = () => {
     setHovered(false);
     onHover(false);
-    // Reset cursor
     document.body.style.cursor = "default";
   };
 
@@ -82,20 +81,33 @@ const Dot = ({
   };
 
   return (
-    <mesh
-      position={position}
-      onClick={onClick}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
-      onPointerMove={handlePointerMove}
-    >
-      <sphereGeometry args={[0.05, 16, 16]} />
-      <meshStandardMaterial
-        color="hotpink"
-        emissive="hotpink"
-        emissiveIntensity={hovered ? 0.9 : 0.5}
-      />
-    </mesh>
+    <group position={position}>
+      {/* Outer glow */}
+      <mesh scale={1.4}>
+        <sphereGeometry args={[0.07, 16, 16]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.07}
+          depthWrite={false}
+        />
+      </mesh>
+
+      {/* Main interactive sphere */}
+      <mesh
+        onClick={onClick}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        onPointerMove={handlePointerMove}
+      >
+        <sphereGeometry args={[0.05, 16, 16]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={hovered ? 1 : 9}
+        />
+      </mesh>
+    </group>
   );
 };
 
@@ -165,24 +177,35 @@ const RotatingSphere = ({
     }
   });
 
+  const centerProject = projectSearchData.find((p) => p.id === "center");
+  const centerColor = centerProject?.color || "#ff00ff";
+  // Fallback to magenta if not found
+
   return (
     <>
       <group ref={sphereRef}>
-        {dotPositions.map((pos, i) => (
-          <Dot
-            key={i}
-            position={pos}
-            id={i + 1}
-            onClick={() => onDotClick(i + 1)}
-            onHover={(hovered, mousePos) =>
-              onDotHover(i + 1, hovered, mousePos)
-            }
-          />
-        ))}
+        {dotPositions.map((pos, i) => {
+          const id = i + 1;
+          const project = projectSearchData.find((p) => p.id === id);
+          const color = project?.color || "#ff00ff"; // fallback to magenta if not found
+
+          return (
+            <Dot
+              key={id}
+              position={pos}
+              id={id}
+              color={color}
+              onClick={() => onDotClick(id)}
+              onHover={(hovered, mousePos) => onDotHover(id, hovered, mousePos)}
+            />
+          );
+        })}
       </group>
+
       <Dot
         position={[0, 0, 0]}
         id="center"
+        color={centerColor}
         onClick={() => onDotClick("center")}
         onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
       />
@@ -234,7 +257,7 @@ export default function InteractiveSphere() {
     <div className="fixed inset-0 z-0 text-red-800">
       {/* 3D Canvas */}
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.9} />
         <pointLight position={[5, 5, 5]} />
         <OrbitControls
           enablePan={false}
