@@ -54,6 +54,7 @@ const Dot = ({
   onClick,
   onHover,
   variant = "default",
+  glow = true,
 }: {
   position: [number, number, number];
   id: ProjectId;
@@ -61,6 +62,7 @@ const Dot = ({
   onClick: () => void;
   onHover: (hovered: boolean, mousePos?: { x: number; y: number }) => void;
   variant?: "default" | "center";
+  glow?: boolean;
 }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -82,14 +84,13 @@ const Dot = ({
     }
   };
 
-  // 🎯 Customize styles for center dot
-  const isCenter = variant === "center";
-  const mainScale = isCenter ? 0.02 : 0.05;
-  const glowScales = isCenter ? [] : [0.07, 0.09, 0.11]; // 3 layers of outer glow
+  const mainScale = variant === "center" ? 0.02 : 0.05;
+  const glowScales = glow
+    ? [mainScale + 0.02, mainScale + 0.04, mainScale + 0.06]
+    : [];
 
   return (
     <group position={position}>
-      {/* Glow layers (not rendered for center) */}
       {glowScales.map((glowSize, i) => (
         <mesh key={i}>
           <sphereGeometry args={[glowSize, 16, 16]} />
@@ -102,7 +103,6 @@ const Dot = ({
         </mesh>
       ))}
 
-      {/* Main sphere */}
       <mesh
         onClick={onClick}
         onPointerOver={handlePointerOver}
@@ -110,23 +110,21 @@ const Dot = ({
         onPointerMove={handlePointerMove}
       >
         <sphereGeometry args={[mainScale, 16, 16]} />
-        {isCenter ? (
-          // Center Dot Material (stylized)
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={hovered ? 9 : 1}
-            opacity={0.9}
-            transparent
-          />
-        ) : (
-          // Default Dot Material
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={hovered ? 1 : 9}
-          />
-        )}
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={
+            hovered
+              ? variant === "center"
+                ? 9
+                : 1
+              : variant === "center"
+              ? 1
+              : 9
+          }
+          opacity={variant === "center" ? 1 : undefined}
+          transparent={variant === "center"}
+        />
       </mesh>
     </group>
   );
@@ -228,6 +226,7 @@ const RotatingSphere = ({
         id="center"
         color={centerColor}
         variant="center"
+        glow={true}
         onClick={() => onDotClick("center")}
         onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
       />
@@ -288,12 +287,12 @@ export default function InteractiveSphere() {
           maxDistance={13}
         />
         <Stars
-          radius={40}
+          radius={30}
           depth={60}
           count={3000}
-          factor={2}
+          factor={2.5}
           fade
-          speed={0.5}
+          speed={1.5}
         />
         <RotatingSphere onDotClick={openModal} onDotHover={handleDotHover} />
       </Canvas>
