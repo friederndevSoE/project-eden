@@ -61,7 +61,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white w-[90%] max-w-2xl p-6 rounded-xl shadow-lg relative"
+              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 rounded-xl shadow-lg relative overflow-hidden"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -73,9 +73,12 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
               >
                 ×
               </button>
-              <Suspense fallback={<div>Loading...</div>}>
-                <DynamicContent />
-              </Suspense>
+
+              <div className="overflow-y-auto h-full pr-2">
+                <Suspense fallback={<div>Loading...</div>}>
+                  <DynamicContent />
+                </Suspense>
+              </div>
             </motion.div>
           </motion.div>
         )}
