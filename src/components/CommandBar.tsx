@@ -45,8 +45,8 @@ export default function CommandBar({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
-      <Command className="bg-white rounded-xl w-full max-w-md shadow-xl p-4 relative">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center px-4">
+      <Command className="bg-white rounded-xl w-full max-w-md shadow-xl p-4 relative mt-[80px] md:mt-[300px]">
         {/* 🔙 Back button */}
         <button
           onClick={onClose}
@@ -60,11 +60,12 @@ export default function CommandBar({
           ref={inputRef}
           value={search}
           onValueChange={setSearch}
-          placeholder="Search by tag..."
+          placeholder="Search something..."
           className="w-full mt-10"
         />
 
-        {/* ✅ Only show results if input is not empty */}
+        {/* Only show results if input is not empty */}
+        {/* Style the results */}
         {search.trim() !== "" && (
           <CommandList>
             {filteredResults.length > 0 ? (
@@ -75,13 +76,15 @@ export default function CommandBar({
                     openModal(project.id); // ✅ Use modal from context
                     onClose();
                   }}
-                  className="px-3 py-2 cursor-pointer aria-selected:bg-gray-200 aria-selected:text-black rounded"
+                  className="px-3 py-2 cursor-pointer aria-selected:bg-slate-200 aria-selected:text-black rounded"
                 >
                   {project.tags.join(", ")}
                 </CommandItem>
               ))
             ) : (
-              <div className="px-3 py-2 text-gray-500">No matches found</div>
+              <div className="px-3 py-2 text-gray-500">
+                Nothing, how about you try something else?
+              </div>
             )}
           </CommandList>
         )}

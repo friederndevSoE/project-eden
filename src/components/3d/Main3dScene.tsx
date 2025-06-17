@@ -93,7 +93,7 @@ const Dot = ({
       <meshStandardMaterial
         color="hotpink"
         emissive="hotpink"
-        emissiveIntensity={hovered ? 0.8 : 0.5}
+        emissiveIntensity={hovered ? 0.9 : 0.5}
       />
     </mesh>
   );
