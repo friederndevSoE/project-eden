@@ -20,8 +20,8 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
     });
 
     soundRef.current = sound;
-    sound.play();
-    setIsPlaying(true);
+    // sound.play();
+    // setIsPlaying(true);
 
     return () => {
       sound.unload();

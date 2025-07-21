@@ -55,24 +55,26 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
       <AnimatePresence>
         {modalOpen && DynamicContent && (
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed inset-0  flex items-center justify-center z-50 "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 rounded-xl shadow-lg relative overflow-hidden"
+              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_rgba(59,_130,_246,_1)]  md:shadow-[6px_6px_0px_1px_rgba(59,_130,_246,_1)]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
+              {/* sidebar decoration */}
               <button
                 onClick={closeModal}
-                className="absolute top-3 right-3 text-gray-700 hover:text-black text-lg"
+                className="absolute mt-[-1px] top-0 right-0 text-gray-700 w-6 h-6 text-lg border border-sky-600 cursor-pointer hover:bg-slate-300 transition-all duration-150 ease-in"
               >
-                ×
+                <div className="w-3 h-3 bg-red-400 rounded-full m-auto"></div>
               </button>
+              <div className="absolute top-0 right-0 mt-[22px] w-6 h-full border border-sky-600"></div>
 
               <div className="overflow-y-auto h-full pr-2">
                 <Suspense fallback={<div>Loading...</div>}>

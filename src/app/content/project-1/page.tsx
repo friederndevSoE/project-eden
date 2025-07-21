@@ -1,10 +1,29 @@
 import React from "react";
 import MusicPlayer from "@/components/MusicPlayer";
+import ImageGallery from "@/components/ImageGallery";
+
+const images = [
+  {
+    src: "/artwork/photo_2023-07-02_11-59-38.jpg",
+  },
+  {
+    src: "/artwork/6qkxkyrcthj71.png",
+  },
+  {
+    src: "/artwork/Screenshot 2025-07-15 144005.png",
+  },
+  {
+    src: "/artwork/cover.7566f8a5.avif",
+  },
+];
 
 const FirstContent = () => {
   return (
     <div>
+      {/* Music */}
       <MusicPlayer src="/audio/MBU_Ending.mp3" />
+
+      {/* Content */}
       <h1 className="text-xl font-bold text-red-600">ONEEE why me?</h1>
       <p>This is detailed info for Outer Dot 1!</p>
       <p>
@@ -84,6 +103,8 @@ const FirstContent = () => {
         Instagram Facebook Linkedin © 2025 Ahrefs Pte. Ltd. (201227417H) 16
         Raffles Quay, #33-03 Hong Leong Building, Singapore 048581
       </p>
+      {/* Artwork */}
+      <ImageGallery images={images} />
     </div>
   );
 };
