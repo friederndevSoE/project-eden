@@ -1,8 +1,10 @@
 import React from "react";
+import MusicPlayer from "@/components/MusicPlayer";
 
 const FirstContent = () => {
   return (
-    <div className="h-[600px]">
+    <div>
+      <MusicPlayer src="/audio/MBU_Ending.mp3" />
       <h1 className="text-xl font-bold text-red-600">ONEEE why me?</h1>
       <p>This is detailed info for Outer Dot 1!</p>
       <p>
