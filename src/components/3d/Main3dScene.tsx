@@ -67,6 +67,7 @@ const Dot = ({
   isSelected?: boolean;
 }) => {
   const [hovered, setHovered] = useState(false);
+  const ringRef = useRef<THREE.Mesh>(null); // ✅ ref for ring
 
   const handlePointerOver = (event: any) => {
     setHovered(true);
@@ -86,11 +87,20 @@ const Dot = ({
     }
   };
 
-  //adjust scale for main and rotating dots
+  // adjust scale for main and rotating dots
   const mainScale = variant === "center" ? 0.02 : 0.05;
   const glowScales = glow
     ? [mainScale + 0.02, mainScale + 0.04, mainScale + 0.06]
     : [];
+
+  // Rotation speed of the outer ring
+  useFrame(() => {
+    if (ringRef.current) {
+      // ringRef.current.rotation.z += 0.8;
+      // ringRef.current.rotation.y += 1;
+      ringRef.current.rotation.x += 0.01;
+    }
+  });
 
   return (
     <group position={position}>
@@ -122,14 +132,14 @@ const Dot = ({
         />
       </mesh>
 
-      {/* ✅ Selection Ring */}
+      {/* Style rotating Selection Ring */}
       {isSelected && (
-        <mesh>
-          <ringGeometry args={[mainScale * 1.9, mainScale * 2, 64]} />
+        <mesh ref={ringRef}>
+          <ringGeometry args={[mainScale * 1.6, mainScale * 1.8, 64]} />
           <meshBasicMaterial
             color={"#ffffff"}
             transparent
-            opacity={0.4}
+            opacity={0.3}
             side={THREE.DoubleSide}
           />
         </mesh>
@@ -185,7 +195,7 @@ const getDotPositions = (
 const RotatingSphere = ({
   onDotClick,
   onDotHover,
-  selectedDot,
+  selectedDots,
 }: {
   onDotClick: (id: ProjectId) => void;
   onDotHover: (
@@ -193,7 +203,7 @@ const RotatingSphere = ({
     hovered: boolean,
     mousePos?: { x: number; y: number }
   ) => void;
-  selectedDot: ProjectId | null;
+  selectedDots: Set<ProjectId>;
 }) => {
   const sphereRef = useRef<THREE.Group>(null);
   const rotationSpeed = 0.0003;
@@ -226,7 +236,7 @@ const RotatingSphere = ({
               color={color}
               onClick={() => onDotClick(id)}
               onHover={(hovered, mousePos) => onDotHover(id, hovered, mousePos)}
-              isSelected={selectedDot === id} // ✅ highlight check
+              isSelected={selectedDots.has(id)} // ✅ support multiple
             />
           );
         })}
@@ -240,7 +250,18 @@ const RotatingSphere = ({
         glow={true}
         onClick={() => onDotClick("center")}
         onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
-        isSelected={selectedDot === "center"}
+        isSelected={selectedDots.has("center")}
+      />
+
+      <Dot
+        position={[0, 0, 0]}
+        id="center"
+        color={centerColor}
+        variant="center"
+        glow={true}
+        onClick={() => onDotClick("center")}
+        onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
+        isSelected={selectedDots.has("center")}
       />
     </>
   );
@@ -262,11 +283,20 @@ export default function InteractiveSphere() {
 
   const { openModal } = useModal();
 
-  const [selectedDot, setSelectedDot] = useState<ProjectId | null>(null);
+  const [selectedDots, setSelectedDots] = useState<Set<ProjectId>>(new Set());
 
   const handleDotClick = (id: ProjectId) => {
-    setSelectedDot(id);
-    openModal(id); // keep your modal behavior
+    setSelectedDots((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id); // unselect
+      } else {
+        newSet.add(id);
+        // ✅ defer opening modal until after this render
+        setTimeout(() => openModal(id), 0);
+      }
+      return newSet;
+    });
   };
 
   const handleDotHover = (
@@ -316,7 +346,7 @@ export default function InteractiveSphere() {
         <RotatingSphere
           onDotClick={handleDotClick}
           onDotHover={handleDotHover}
-          selectedDot={selectedDot}
+          selectedDots={selectedDots}
         />
       </Canvas>
 
