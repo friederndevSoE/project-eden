@@ -275,7 +275,7 @@ export default function InteractiveSphere() {
   };
 
   return (
-    <div className="fixed inset-0 z-0 text-red-800">
+    <div className="fixed inset-0 z-0 ">
       {/* 3D Canvas */}
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
         <ambientLight intensity={0.9} />

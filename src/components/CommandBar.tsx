@@ -14,7 +14,7 @@ export default function CommandBar({
 }) {
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { openModal } = useModal(); // ✅ Get openModal from context
+  const { openModal } = useModal(); // Get openModal from context
 
   // Focus input when CommandBar opens
   useEffect(() => {
@@ -46,11 +46,11 @@ export default function CommandBar({
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center px-4">
-      <Command className="bg-white rounded-xl w-full max-w-md shadow-xl p-4 relative mt-[80px] md:mt-[300px]">
+      <Command className="bg-white text-black w-full max-w-md shadow-xl p-4 relative mt-[80px] md:mt-[300px]">
         {/* 🔙 Back button */}
         <button
           onClick={onClose}
-          className="absolute left-4 top-4 text-gray-500 hover:text-black text-sm"
+          className="absolute left-4 top-4 text-gray-500 hover:text-black transition-all duration-150 ease-in text-sm"
         >
           ← Back
         </button>
@@ -61,11 +61,11 @@ export default function CommandBar({
           value={search}
           onValueChange={setSearch}
           placeholder="Search something..."
-          className="w-full mt-10"
+          className="w-full mt-10 py-2 px-4 bg-slate-100"
         />
 
         {/* Only show results if input is not empty */}
-        {/* Style the results */}
+        {/* Style the dropdown results */}
         {search.trim() !== "" && (
           <CommandList>
             {filteredResults.length > 0 ? (
@@ -76,13 +76,13 @@ export default function CommandBar({
                     openModal(project.id); // ✅ Use modal from context
                     onClose();
                   }}
-                  className="px-3 py-2 cursor-pointer aria-selected:bg-slate-200 aria-selected:text-black rounded"
+                  className="px-3 py-2 mt-2 cursor-pointer aria-selected:bg-slate-200 aria-selected:text-black "
                 >
                   {project.tags.join(", ")}
                 </CommandItem>
               ))
             ) : (
-              <div className="px-3 py-2 text-gray-500">
+              <div className="px-3 py-2">
                 Nothing, how about you try something else?
               </div>
             )}
