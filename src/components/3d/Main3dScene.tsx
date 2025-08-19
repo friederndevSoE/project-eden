@@ -84,6 +84,7 @@ const Dot = ({
     }
   };
 
+  //adjust scale for main and rotating dots
   const mainScale = variant === "center" ? 0.02 : 0.05;
   const glowScales = glow
     ? [mainScale + 0.02, mainScale + 0.04, mainScale + 0.06]
@@ -97,7 +98,7 @@ const Dot = ({
           <meshBasicMaterial
             color={color}
             transparent
-            opacity={0.08 / (i + 1)}
+            opacity={0.13 / (i + 1)}
             depthWrite={false}
           />
         </mesh>
@@ -297,7 +298,7 @@ export default function InteractiveSphere() {
         <RotatingSphere onDotClick={openModal} onDotHover={handleDotHover} />
       </Canvas>
 
-      {/* Tooltip - moved outside canvas with highest z-index */}
+      {/* Tooltip*/}
       <Tooltip
         visible={tooltip.visible}
         position={tooltip.position}
