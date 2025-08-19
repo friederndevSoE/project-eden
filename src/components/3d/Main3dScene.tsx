@@ -67,7 +67,7 @@ const Dot = ({
   isSelected?: boolean;
 }) => {
   const [hovered, setHovered] = useState(false);
-  const ringRef = useRef<THREE.Mesh>(null); // ✅ ref for ring
+  const ringRef = useRef<THREE.Mesh>(null);
 
   const handlePointerOver = (event: any) => {
     setHovered(true);
@@ -88,7 +88,7 @@ const Dot = ({
   };
 
   // adjust scale for main and rotating dots
-  const mainScale = variant === "center" ? 0.02 : 0.05;
+  const mainScale = variant === "center" ? 0.04 : 0.05;
   const glowScales = glow
     ? [mainScale + 0.02, mainScale + 0.04, mainScale + 0.06]
     : [];
@@ -128,7 +128,7 @@ const Dot = ({
         <meshStandardMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={hovered ? 3 : 1}
+          emissiveIntensity={hovered ? 3 : 2}
         />
       </mesh>
 
@@ -288,15 +288,12 @@ export default function InteractiveSphere() {
   const handleDotClick = (id: ProjectId) => {
     setSelectedDots((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id); // unselect
-      } else {
-        newSet.add(id);
-        // ✅ defer opening modal until after this render
-        setTimeout(() => openModal(id), 0);
-      }
+      newSet.add(id); // ✅ always keep it once clicked
       return newSet;
     });
+
+    // ✅ always open modal, even if already selected
+    setTimeout(() => openModal(id), 0);
   };
 
   const handleDotHover = (
