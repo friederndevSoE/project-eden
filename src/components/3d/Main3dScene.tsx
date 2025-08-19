@@ -55,6 +55,7 @@ const Dot = ({
   onHover,
   variant = "default",
   glow = true,
+  isSelected = false,
 }: {
   position: [number, number, number];
   id: ProjectId;
@@ -63,6 +64,7 @@ const Dot = ({
   onHover: (hovered: boolean, mousePos?: { x: number; y: number }) => void;
   variant?: "default" | "center";
   glow?: boolean;
+  isSelected?: boolean;
 }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -92,18 +94,20 @@ const Dot = ({
 
   return (
     <group position={position}>
+      {/* Glow layers */}
       {glowScales.map((glowSize, i) => (
         <mesh key={i}>
           <sphereGeometry args={[glowSize, 16, 16]} />
           <meshBasicMaterial
             color={color}
             transparent
-            opacity={0.13 / (i + 1)}
+            opacity={0.08 / (i + 1)}
             depthWrite={false}
           />
         </mesh>
       ))}
 
+      {/* Main Dot */}
       <mesh
         onClick={onClick}
         onPointerOver={handlePointerOver}
@@ -114,19 +118,22 @@ const Dot = ({
         <meshStandardMaterial
           color={color}
           emissive={color}
-          emissiveIntensity={
-            hovered
-              ? variant === "center"
-                ? 9
-                : 1
-              : variant === "center"
-              ? 1
-              : 9
-          }
-          opacity={variant === "center" ? 1 : undefined}
-          transparent={variant === "center"}
+          emissiveIntensity={hovered ? 3 : 1}
         />
       </mesh>
+
+      {/* ✅ Selection Ring */}
+      {isSelected && (
+        <mesh>
+          <ringGeometry args={[mainScale * 1.9, mainScale * 2, 64]} />
+          <meshBasicMaterial
+            color={"#ffffff"}
+            transparent
+            opacity={0.4}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      )}
     </group>
   );
 };
@@ -178,6 +185,7 @@ const getDotPositions = (
 const RotatingSphere = ({
   onDotClick,
   onDotHover,
+  selectedDot,
 }: {
   onDotClick: (id: ProjectId) => void;
   onDotHover: (
@@ -185,6 +193,7 @@ const RotatingSphere = ({
     hovered: boolean,
     mousePos?: { x: number; y: number }
   ) => void;
+  selectedDot: ProjectId | null;
 }) => {
   const sphereRef = useRef<THREE.Group>(null);
   const rotationSpeed = 0.0003;
@@ -207,7 +216,7 @@ const RotatingSphere = ({
         {dotPositions.map((pos, i) => {
           const id = i + 1;
           const project = projectSearchData.find((p) => p.id === id);
-          const color = project?.color || "#ff00ff"; // fallback to magenta if not found
+          const color = project?.color || "#ff00ff";
 
           return (
             <Dot
@@ -217,6 +226,7 @@ const RotatingSphere = ({
               color={color}
               onClick={() => onDotClick(id)}
               onHover={(hovered, mousePos) => onDotHover(id, hovered, mousePos)}
+              isSelected={selectedDot === id} // ✅ highlight check
             />
           );
         })}
@@ -230,6 +240,7 @@ const RotatingSphere = ({
         glow={true}
         onClick={() => onDotClick("center")}
         onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
+        isSelected={selectedDot === "center"}
       />
     </>
   );
@@ -250,6 +261,13 @@ export default function InteractiveSphere() {
   });
 
   const { openModal } = useModal();
+
+  const [selectedDot, setSelectedDot] = useState<ProjectId | null>(null);
+
+  const handleDotClick = (id: ProjectId) => {
+    setSelectedDot(id);
+    openModal(id); // keep your modal behavior
+  };
 
   const handleDotHover = (
     id: ProjectId | null,
@@ -295,7 +313,11 @@ export default function InteractiveSphere() {
           fade
           speed={1.5}
         />
-        <RotatingSphere onDotClick={openModal} onDotHover={handleDotHover} />
+        <RotatingSphere
+          onDotClick={handleDotClick}
+          onDotHover={handleDotHover}
+          selectedDot={selectedDot}
+        />
       </Canvas>
 
       {/* Tooltip*/}
