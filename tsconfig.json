@@ -25,6 +25,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/api/translate.js",
+    "src/app/content/test.mjs",
+    "src/app/api/translate.tx"
+  ],
   "exclude": ["node_modules"]
 }
