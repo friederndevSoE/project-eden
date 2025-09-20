@@ -121,7 +121,7 @@ export default function PostContent({
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
-          <div className="flex flex-column text-center items-center justify-center h-full text-gray-500 ">
+          <div className="text-center items-center justify-center h-full text-gray-500 ">
             <p>
               ⏳ Nội dung đang được dịch, thời gian chờ có thể lên tới 3 phút.
             </p>

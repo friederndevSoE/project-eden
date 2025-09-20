@@ -61,7 +61,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_rgba(59,_130,_246,_1)]  md:shadow-[6px_6px_0px_1px_rgba(59,_130,_246,_1)]"
+              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_#61384C]  md:shadow-[6px_6px_0px_1px_#61384C]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -70,11 +70,23 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
               {/* sidebar decoration */}
               <button
                 onClick={closeModal}
-                className="absolute mt-[-1px] top-0 right-0 text-gray-700 w-6 h-6 text-lg border border-sky-600 cursor-pointer hover:bg-slate-300 transition-all duration-150 ease-in"
+                className="absolute mt-[-1px] top-0 right-0 text-gray-700 w-6 h-6 text-lg border border-amber-900 cursor-pointer hover:bg-orange-200 transition-all duration-150 ease-in"
               >
-                <div className="w-3 h-3 bg-red-400 rounded-full m-auto"></div>
+                <svg
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 1216 1312"
+                  className="m-auto"
+                >
+                  <path
+                    fill="#B14D3F"
+                    d="M1202 1066q0 40-28 68l-136 136q-28 28-68 28t-68-28L608 976l-294 294q-28 28-68 28t-68-28L42 1134q-28-28-28-68t28-68l294-294L42 410q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294l294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68L880 704l294 294q28 28 28 68z"
+                  ></path>
+                </svg>
               </button>
-              <div className="absolute top-0 right-0 mt-[22px] w-6 h-full border border-sky-600"></div>
+              <div className="absolute top-0 right-0 mt-[22px] w-6 h-full border  border-amber-900"></div>
 
               <div className="overflow-y-auto h-full pr-2">
                 <Suspense fallback={<div>Loading...</div>}>
