@@ -5,7 +5,7 @@ import ImageGallery from "@/components/ImageGallery";
 
 const styleTemplates = {
   default: "text-black",
-  quote: "text-gray-800 p-4 bg-slate-300",
+  quote: "text-gray-800 p-4 bg-slate-300/80",
   summary: "text-blue-600",
   conversation: "text-yellow-600",
 };
@@ -30,10 +30,11 @@ export default function PostContent({
   const [contentHeight, setContentHeight] = useState<number>();
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const saved = localStorage.getItem(storageKey);
-    if (saved) setVietnameseSections(JSON.parse(saved));
-  }, [storageKey]);
+  //disable this for testing
+  // useEffect(() => {
+  //   const saved = localStorage.getItem(storageKey);
+  //   if (saved) setVietnameseSections(JSON.parse(saved));
+  // }, [storageKey]);
 
   const handleTranslate = async () => {
     if (contentRef.current) {
@@ -60,8 +61,22 @@ export default function PostContent({
       if (!response.ok) throw new Error("Translation API failed");
 
       const data = await response.json();
-      const translatedArr: string[] = data.translatedText.split(/\n\s*\n/);
+      const translatedArr: string[] = [];
 
+      for (const section of englishSections) {
+        if (section.style === "hr") {
+          translatedArr.push("---");
+          continue;
+        }
+
+        const res = await fetch("/api/translate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: section.text }),
+        });
+        const data = await res.json();
+        translatedArr.push(data.translatedText);
+      }
       const translatedWithStyles = englishSections.map((s, i) => ({
         text: translatedArr[i] || s.text,
         style: s.style,
@@ -106,8 +121,13 @@ export default function PostContent({
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
-          <div className="flex items-center justify-center h-full text-gray-500 italic">
-            ⏳ Translating content… wait time up to 1 mins.
+          <div className="flex flex-column text-center items-center justify-center h-full text-gray-500 ">
+            <p>
+              ⏳ Nội dung đang được dịch, thời gian chờ có thể lên tới 3 phút.
+            </p>
+            <p>
+              Cảm ơn du khách, nhưng tôi sẽ vui hơn nếu được đọc nguyên bản 👉👈
+            </p>
           </div>
         ) : (
           <div ref={contentRef}>
@@ -117,7 +137,7 @@ export default function PostContent({
               ) : (
                 <p
                   key={idx}
-                  className={`mb-4 ${
+                  className={`mb-4 whitespace-pre-line ${
                     styleTemplates[
                       section.style as keyof typeof styleTemplates
                     ] || styleTemplates.default

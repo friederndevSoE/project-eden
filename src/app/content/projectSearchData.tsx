@@ -25,7 +25,7 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: 2,
     title: "Project Two",
-    tags: ["Aponia"],
+    tags: ["Steins Gate"],
     color: "#a78bfa",
   },
   {

@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const prompt = `Translate everything in the following English content to Vietnamese. Preserve all original line breaks and paragraphs. Do not add any extra commentary or formatting.
+    const prompt = `Translate everything in the following English content to Vietnamese. Preserve all original line breaks and paragraphs. Do not add any extra commentary or formatting. The tone should be poetic and inviting.
     Text to translate:
     ---
     ${text}
