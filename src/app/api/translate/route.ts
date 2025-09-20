@@ -16,15 +16,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const prompt = `Translate the following English text to Vietnamese. Preserve all original line breaks and paragraphs. Do not add any extra commentary or formatting.
-    
-Text to translate:
----
-${text}
----
-    
-Translated text:`;
-
+    const prompt = `Translate everything in the following English content to Vietnamese. Preserve all original line breaks and paragraphs. Do not add any extra commentary or formatting.
+    Text to translate:
+    ---
+    ${text}
+    ---
+    Translated text:`;
     const result = await genAI.models.generateContent({
       model: "gemini-2.5-flash",
       contents: [{ parts: [{ text: prompt }] }],

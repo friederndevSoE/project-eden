@@ -1,22 +1,20 @@
-import React from "react";
+import PostContent from "@/components/PostContent";
+import { englishSections } from "@/app/data/SteinsGate";
+import { images } from "@/app/data/project-1";
+
 import MusicPlayer from "@/components/MusicPlayer";
-import ImageGallery from "@/components/ImageGallery";
 
-const images = [
-  {
-    src: "/artwork/6qkxkyrcthj71.png",
-  },
-];
-
-const SecondContent = () => {
+export default function SteinsGate() {
   return (
-    <div>
-      <h1 className="text-xl font-bold text-blue-600">Outer Dot 2</h1>
-      <p>This is detailed info for Outer Dot 2!</p>
-      {/* Artwork */}
-      <ImageGallery images={images} />
-    </div>
+    <>
+      <MusicPlayer src="/audio/MBU_Ending.mp3" />
+      <p>Beginner Friendly: Depends</p>
+      <PostContent
+        englishSections={englishSections}
+        images={images}
+        storageKey="project-2-vietnamese"
+      />
+      <p>secret message here</p>
+    </>
   );
-};
-
-export default SecondContent;
+}

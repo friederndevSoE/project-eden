@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import MusicPlayer from "@/components/MusicPlayer";
 import ImageGallery from "@/components/ImageGallery";
 
 const styleTemplates = {
@@ -14,12 +13,10 @@ const styleTemplates = {
 export default function PostContent({
   englishSections,
   images,
-  audioSrc,
   storageKey,
 }: {
   englishSections: { text: string; style: string }[];
   images: { src: string }[];
-  audioSrc: string;
   storageKey: string; // unique key per post for localStorage
 }) {
   const [sections, setSections] =
@@ -92,8 +89,6 @@ export default function PostContent({
 
   return (
     <div>
-      <MusicPlayer src={audioSrc} />
-
       <button
         onClick={isTranslated ? handleRevert : handleTranslate}
         disabled={isLoading}
@@ -112,7 +107,7 @@ export default function PostContent({
       >
         {isLoading ? (
           <div className="flex items-center justify-center h-full text-gray-500 italic">
-            ⏳ Translating content… please wait.
+            ⏳ Translating content… wait time up to 1 mins.
           </div>
         ) : (
           <div ref={contentRef}>
