@@ -55,13 +55,13 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
       <AnimatePresence>
         {modalOpen && DynamicContent && (
           <motion.div
-            className="fixed inset-0  flex items-center justify-center z-50 "
+            className="fixed inset-0 flex items-center justify-center z-50 text-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white w-[94%] max-w-2xl h-[80vh] p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_#61384C]  md:shadow-[6px_6px_0px_1px_#61384C]"
+              className="bg-white w-[94%] max-w-2xl h-[80vh] p-4 pl-2 pt-2 lg:p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_#61384C]  md:shadow-[6px_6px_0px_1px_#61384C]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -70,7 +70,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
               {/* sidebar decoration */}
               <button
                 onClick={closeModal}
-                className="absolute mt-[-1px] top-0 right-0 text-gray-700 w-6 h-6 text-lg border border-amber-900 cursor-pointer hover:bg-orange-200 transition-all duration-150 ease-in"
+                className="absolute mt-[-1px] top-0 right-0  w-6 h-6 text-lg border border-amber-900 cursor-pointer hover:bg-orange-200 transition-all duration-150 ease-in"
               >
                 <svg
                   xmlnsXlink="http://www.w3.org/1999/xlink"

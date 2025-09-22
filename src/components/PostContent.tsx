@@ -2,10 +2,11 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import ImageGallery from "@/components/ImageGallery";
+import { motion } from "framer-motion";
 
 const styleTemplates = {
   default: "text-black",
-  quote: "text-gray-800 p-4 bg-slate-300/80",
+  quote: "text-gray-800 p-4 bg-slate-300/40 italic rounded",
   summary: "text-blue-600",
   conversation: "text-yellow-600",
 };
@@ -117,17 +118,31 @@ export default function PostContent({
       </button>
 
       <div
-        className="relative text-black mt-4 p-4 border rounded bg-gray-100 transition-all duration-300"
+        className="relative text-black mt-4 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
-          <div className="text-center items-center justify-center h-full text-gray-500 ">
-            <p>
-              ⏳ Nội dung đang được dịch, thời gian chờ có thể lên tới 3 phút.
-            </p>
-            <p>
-              Cảm ơn du khách, nhưng tôi sẽ vui hơn nếu được đọc nguyên bản 👉👈
-            </p>
+          <div className="flex flex-col items-center justify-center h-full text-gray-500 space-y-2">
+            <motion.div
+              className="flex space-x-2"
+              initial={{ opacity: 0.2 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                repeat: Infinity,
+                duration: 1,
+                repeatType: "reverse",
+              }}
+            >
+              <span className="w-3 h-3 bg-orange-800 rounded-full" />
+              <span className="w-3 h-3 bg-orange-800 rounded-full" />
+              <span className="w-3 h-3 bg-orange-800 rounded-full" />
+            </motion.div>
+            <div>
+              <p>
+                ⏳ Nội dung đang được dịch, thời gian chờ có thể lên tới 3 phút.
+              </p>
+              <p>Nếu có thể, mong du khách xem nội dung nguyên bản. 👉👈</p>
+            </div>
           </div>
         ) : (
           <div ref={contentRef}>

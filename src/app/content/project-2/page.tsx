@@ -8,10 +8,16 @@ export default function SteinsGate() {
   const project = projectSearchData.find((p) => p.id === 2);
   return (
     <>
-      <p>{project?.tags}</p>
-      <p>Beginner Friendly: Depends</p>
-
-      <MusicPlayer src="/audio/MBU_Ending.mp3" />
+      <div className="z-[99] bg-white border border-red-500 ">
+        <p className="">{project?.tags}</p>
+        <p>
+          Beginner Friendly:
+          <span className="py-1 px-2 rounded-lg bg-slate-200 text-slate-600">
+            Depends
+          </span>
+        </p>
+        <MusicPlayer src="/audio/MBU_Ending.mp3" />
+      </div>
       <PostContent
         englishSections={englishSections}
         images={images}
