@@ -126,9 +126,10 @@ export default function PasswordGate() {
             <div
               key={project?.id}
               style={{ backgroundColor: project?.color }}
-              className=" font-bold text-white py-1 px-2"
+              className=" font-bold text-white py-1 px-2 flex justify-between items-center"
             >
-              {project?.tags}
+              <p>{project?.tags}</p>
+              <p className="font-medium text-sm">[23.04_3M]</p>
             </div>
 
             <p className="text-xs mt-1 mb-2">

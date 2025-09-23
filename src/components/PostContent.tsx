@@ -112,7 +112,7 @@ export default function PostContent({
         className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200"
       >
         {isLoading
-          ? "Translating..."
+          ? "Translating... Don't exit"
           : isTranslated
           ? "Xem nguyên bản"
           : "Translate to Vietnamese"}
@@ -120,7 +120,7 @@ export default function PostContent({
 
       {/* the content */}
       <div
-        className="max-w-full relative text-black mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
+        className="w-full relative text-black mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
@@ -139,11 +139,16 @@ export default function PostContent({
               <span className="w-3 h-3 bg-orange-800 rounded-full" />
               <span className="w-3 h-3 bg-orange-800 rounded-full" />
             </motion.div>
-            <div>
+            <div className="flex flex-col items-center">
               <p>
-                ⏳ Nội dung đang được dịch, thời gian chờ có thể lên tới 3 phút.
+                Nội dung đang được dịch, thời gian chờ có thể lên tới
+                <span className="underline"> 3 phút</span>.
               </p>
-              <p>Nếu có thể, mong du khách xem nội dung nguyên bản. 👉👈</p>
+              <p>
+                Note: Nội dung nguyên bản luôn chứa đựng những gì chân thật
+                nhất. Nếu có thể, mong hữu khách có thể trải nghiệm ngôn ngữ
+                được viết ban đầu ở những vì sao tới.
+              </p>
             </div>
           </div>
         ) : (

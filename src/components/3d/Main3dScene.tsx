@@ -208,7 +208,12 @@ const RotatingSphere = ({
   const sphereRef = useRef<THREE.Group>(null);
   const rotationSpeed = 0.0003;
 
-  const dotPositions = useMemo(() => getDotPositions(6, 1.2, 0.3), []);
+  const projects = projectSearchData.filter((p) => p.id !== "center");
+
+  const dotPositions = useMemo(
+    () => getDotPositions(projects.length, 1.2, 0.3),
+    [projects.length]
+  );
 
   useFrame(() => {
     if (sphereRef.current) {
@@ -218,40 +223,24 @@ const RotatingSphere = ({
 
   const centerProject = projectSearchData.find((p) => p.id === "center");
   const centerColor = centerProject?.color || "#ff00ff";
-  // Fallback to magenta if not found
 
   return (
     <>
       <group ref={sphereRef}>
-        {dotPositions.map((pos, i) => {
-          const id = i + 1;
-          const project = projectSearchData.find((p) => p.id === id);
-          const color = project?.color || "#ff00ff";
-
-          return (
-            <Dot
-              key={id}
-              position={pos}
-              id={id}
-              color={color}
-              onClick={() => onDotClick(id)}
-              onHover={(hovered, mousePos) => onDotHover(id, hovered, mousePos)}
-              isSelected={selectedDots.has(id)} // ✅ support multiple
-            />
-          );
-        })}
+        {projects.map((project, i) => (
+          <Dot
+            key={project.id}
+            position={dotPositions[i]}
+            id={project.id}
+            color={project.color}
+            onClick={() => onDotClick(project.id)}
+            onHover={(hovered, mousePos) =>
+              onDotHover(project.id, hovered, mousePos)
+            }
+            isSelected={selectedDots.has(project.id)}
+          />
+        ))}
       </group>
-
-      <Dot
-        position={[0, 0, 0]}
-        id="center"
-        color={centerColor}
-        variant="center"
-        glow={true}
-        onClick={() => onDotClick("center")}
-        onHover={(hovered, mousePos) => onDotHover("center", hovered, mousePos)}
-        isSelected={selectedDots.has("center")}
-      />
 
       <Dot
         position={[0, 0, 0]}

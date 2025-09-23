@@ -55,7 +55,7 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: 7,
     title: "Project Seven",
-    tags: ["seven"],
+    tags: ["Echo of Starsong"],
     color: "#38bdf8",
   },
 ];
