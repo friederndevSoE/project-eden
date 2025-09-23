@@ -120,7 +120,7 @@ export default function PostContent({
 
       {/* the content */}
       <div
-        className="relative text-black mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
+        className="max-w-full relative text-black mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
@@ -154,7 +154,7 @@ export default function PostContent({
               ) : (
                 <p
                   key={idx}
-                  className={`mb-4 whitespace-pre-line ${
+                  className={`mb-2 whitespace-pre-line ${
                     styleTemplates[
                       section.style as keyof typeof styleTemplates
                     ] || styleTemplates.default

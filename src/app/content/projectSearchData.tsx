@@ -37,7 +37,7 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: 4,
     title: "Project Four",
-    tags: ["Vill-V"],
+    tags: ["Honkai Impact 3rd"],
     color: "#facc15",
   },
   {

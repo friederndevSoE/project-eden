@@ -1,53 +1,50 @@
 export const englishSections = [
   {
-    text: `The wind caresses my cheek. I push down the pedal and begin to ascend the bridge with the sea breeze blowing. The spokes rhythmically revolve, reflecting rays of strong sunlight. Sweat oozes out of my every pore, but it's not unpleasant. It's actually quite healthy. It somehow reminds me of running around the school grounds back in my elementary days.
-
-    I proposed this cycling activity as a change of pace from the search for an unfindable pin. Of course, I already know who the pin belongs to, and who ██████'s father is, but I dare not tell anyone. If at all possible, I want to spend these two days in peace and delay Suzuha's time travel. That became my current goal.
-    
-    "W-Where's some water?! Still no vending machine?! I could kill for a glass of water!" 
-    
-    "Sorry to say, but there's no convenience store untli we cross another bridge after this one" - I reply mechanically.
-
-    "Okarin, you sure know your stuff. Have you been here before?" 
-
-    "Yeah. Many times."  Yes, I've been here many times. Many times, I've gone this way. 
-
-    What cycle am I on today? I feel like I'm past 10. I'm endlessly repeating the same loop, as usual.
-
-    █████'s attack?  ██████'s death? Those things won't happen for all eternity.
-
-    At last, Daru seems to have used up the last of his strength. While still on his bike, he rests his upper half on the guardrail that divides the roadway and the footpath. There, I turn and park next to Daru's bike.
-
-    "That's dangero--" I swallowed my words. Thoughts too dark to be my own suddenly slipped into my mind.
-
-    What would happen if I didn't pull Daru's arm? Would the expected happen? Would this sloppy body of Daru's get caught in the truck's body and get sent flying like a rag doll? Would his head or arm get blown off and his crimson blood gush everywhere? Would everyone scream after witnessing such an event?
-
-    If I go back to the start of the loop, Daru won't even have a scratch. It doesn't matter how much blood he gushes, or how far his entrails come out. 
-
-    Moreover, everyone needs a little spice in their life. An encounter with a splatter scene is necessary to arouse one's own survival instinct by invoking fear. If I keep soaking in these lukewarm days, I'd lose my motivation to seek peace.
-
-    As far as these two days are concerned,
-
-    I am God.
-
-    A 48-hour eternity. I am the Creator of this paradise. 
-
-    Tomorrow will be another good day for everyone.`,
+    text: `…
+Eden: Miss Raiden, you should have looked up to the starry night sky sometimes, right?
+Mei: Yes, only less and less.
+Eden: Ah... I can relate to that. Watching the stars... Requires suitable companions. But when we look up to the stars, they're not there anymore. Most of them have long perished... The light our eyes catch is from tens of thousands of years ago. But still, this never diminishes their brilliance....
+`,
     style: "quote",
   },
   {
-    text: `I find this title quite familiar when browsing through Steam. I think I saw this title - Steins Gate way back then in high school. I assume it's some classic due to the amount of memes and references, so obviously I set a high expectation immediately…. Surely it was a wise move to expect great things out of the gate?
+    text: `This is probably the hardest game to write about, it's been years since I finished it, and I wonder whether I can retain the knowledge, emotion and impression accurately enough or the impression holds enough weight to leave a faithful and authentic 'review'? Or shouldn’t I hold that standard and just write what I feel at the present moment?
 
-Well it damn right surely does live up to the title of the best-rated visual novel of all time. That was a choice of Steins Gate.
+Time passed, impression changed, discovering more layers while forgetting some. Some stay and stick well, some become fuzzy and harder to recollect. It feels somewhat a bit less authentic to sit on it too long and write about the stuff I don’t vividly remember.
 
-Upon starting the game, you are greeted with an over-the-top main character whose half of whose dialogue you can barely understand, you wonder if you ever can take this guy seriously. But as you progress through the story, you ... still find him to be a little bit weird. This guy is unhinged and doesn’t seem to care about what the world thinks about him, that’s somewhat charming, isn’t it?
+I started writing this as a regular review, but after weeks of constant revisions, this game deserves something a little bit different.`,
+    style: "default",
+  },
+  //line break
+  { text: "---", style: "hr" },
 
-After you get all of that, just chill, relax, take it easy, let your guard down and watch as the latter part of the story will have you in a chokehold, take you on an emotional ride while hitting you in the guts at the same time.
+  {
+    text: `Mihoyo, around this time, they are huge, you can’t fathom their influence, and the money they are making through this deceptive gambling gatcha system. Who knows what you will change when “you” read this? Maybe they fall from grace? Is the company finally public? The next EA and Blizzard, or still just a Chinese gaming company that happens to know exactly what appeals to the masses.
+
+But let’s step back for a bit, to a more peaceful time, where they created this game that deserved a spot here. Did this game give birth to this specific project idea and shape its concept to begin with? Maybe.
+
+It was the time when you felt the company prioritized passion and love, rather than market trends and what work for the masses. People in charge care, sprinkle their effort even in trivial things such as maintenance messages, mailbox letters, characters’ birthday CG,... they were brimming with love.
+
+The cheesy dialogue they wrote, the clumsy art they drew that heavily depends on 3D modelling, the songs they composed, everything was so … raw and human, we had work of art, compare to glorified promotional materials.
+
+Honkai Impact 3rd. So what even is the Honkai? Honkai is something that grows along with civilization, the more advanced the civilization, the stronger the honkai becomes. No one knows where it comes from, to what extent it will stop, but it seems to do one thing only, to destroy mankind… I think? The concept lost its meaning ages ago, even in-game, and even more when it was slapped on many different games with no substance behind it.
+
+The setting of Honkai Impact 3rd couldn't be simpler: cute girls fighting monsters. Like every shounen story there is, they learn about fighting for something other than themselves, about the cost of sacrifice, about choosing to live on for the sake of others. They learn to fight and to protect, they grow, mature and finally graduate. 
 `,
     style: "default",
   },
   //line break
   { text: "---", style: "hr" },
+  {
+    text: `This is a gatcha game, most gamers would be very familiar with this type of game and its live service nature.
+
+With every gatcha game, the end experience is similar to burning out, whether you notice an aggressive monetary strategy from the company or making decisions that clearly focus on squeezing money out of your pocket rather than the playing experience. Gradually, the grinding makes you sick, the constant loop of chasing new content and flashy characters tires you out, and it ends in resentment.
+
+But this is the first time I treated it like a console game, meta, powercreep, grinding, limited events, daily log-in, these things are just secondary. Literally didn’t give a shit about a game mode just because it doesn’t follow the chronological story order. The story comes first, and when it’s finished, I close it, like closing a book.
+
+`,
+    style: "default",
+  },
   {
     text: `Steins Gate's setting revolves around a bunch of tech-savvy teenagers trying to experiment and mess around for fun mostly. Fun and lighthearted, but by accident, they find out a way to compress message data to send it back in time, and eventually figure out a way to do the same with memory and consciousness. Everytime they tried to experiment with the past, the world around them also changed a bit, something felt just a little bit off, just a little bit different. Eventually, the looming threat you feel at the back of your mind and the consequences started to unfold. The friends who helped you, the people involved in your little experiment started to pay the price.`,
     style: "summary",

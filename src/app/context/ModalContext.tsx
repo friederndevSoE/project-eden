@@ -61,7 +61,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white w-[94%] max-w-2xl h-[80vh] p-4 pl-2 pt-2 lg:p-6 relative overflow-hidden shadow-[4px_4px_0px_1px_#61384C]  md:shadow-[6px_6px_0px_1px_#61384C]"
+              className="bg-white w-[94%] max-w-2xl h-[80vh] p-4 pl-2 pt-2 md:p-6 relative overflow- shadow-[4px_4px_0px_1px_#61384C]  md:shadow-[6px_6px_0px_1px_#61384C]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -86,9 +86,9 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
                   ></path>
                 </svg>
               </button>
-              <div className="absolute top-0 right-0 mt-[22px] w-6 h-full border  border-amber-900"></div>
+              <div className="absolute top-0 right-0 mt-[22px] w-6 h-full border border-amber-900"></div>
 
-              <div className="overflow-y-auto h-full pr-2">
+              <div className="overflow-y-auto w-auto h-full pr-2">
                 <Suspense fallback={<div>Loading...</div>}>
                   <DynamicContent />
                 </Suspense>
