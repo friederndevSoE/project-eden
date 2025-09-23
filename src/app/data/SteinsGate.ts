@@ -1,38 +1,64 @@
 export const englishSections = [
   {
-    text: `The wind caresses my cheek. I push down the pedal and begin to ascend the bridge with the sea breeze blowing. The spokes rhythmically revolve, reflecting rays of strong sunlight. Sweat oozes out of my every pore, but it's not unpleasant. It's actually quite healthy. It somehow reminds me of running around the school grounds back in my elementary days.
+    text: `Cycle 1500
+"Congratulations, by now you should have fully acclimatized to your new life onboard your ship. Remember to rely on your Replika to assist you in maintaining your vessel. We all wish you great success in your mission."
 
-    I proposed this cycling activity as a change of pace from the search for an unfindable pin. Of course, I already know who the pin belongs to, and who ██████'s father is, but I dare not tell anyone. If at all possible, I want to spend these two days in peace and delay Suzuha's time travel. That became my current goal.
-    
-    "W-Where's some water?! Still no vending machine?! I could kill for a glass of water!" 
-    
-    "Sorry to say, but there's no convenience store untli we cross another bridge after this one" - I reply mechanically.
+Cycle 1840
+Everything is always the same. I feel like I'm trapped inside this ship. I know every bolt on every panel in every room of it. I've seen everything, I've done everything there is to do in here.
+I can't concentrate on anything. It's like there's this fog inside my head, and whenever I try to do anything, I just can't focus. I want to go outside, I want to breathe fresh air, I want to feel wind on my face and in my hair.
 
-    "Okarin, you sure know your stuff. Have you been here before?" 
+Cycle 2503
+I think I lost more hair. I'm sitting here, getting older. Every time I wake up, I feel older, weaker, sicker...
 
-    "Yeah. Many times."  Yes, I've been here many times. Many times, I've gone this way. 
+Cycle 3000
+"Congratulations, Comrade! You've survived 3000 cycles.
 
-    What cycle am I on today? I feel like I'm past 10. I'm endlessly repeating the same loop, as usual.
+If you have not found a suitable world for landing by this point, accept that you will not. Find solace in the thought that others might be successful where you failed.
 
-    █████'s attack?  ██████'s death? Those things won't happen for all eternity.
+Life support systems and reactor shielding will soon begin to fail, and radiation may begin to leak from the cooling system. We recommend you do not attempt to prolong your suffering by reusing old filters or rationing supplies.
 
-    At last, Daru seems to have used up the last of his strength. While still on his bike, he rests his upper half on the guardrail that divides the roadway and the footpath. There, I turn and park next to Daru's bike.
+Instead, make peace with your fate. We suggest that you ask your Replika, while it is still functional, to spare you a slow and agonizing death
 
-    "That's dangero--" I swallowed my words. Thoughts too dark to be my own suddenly slipped into my mind.
+Remember, you will die having served your Nation by partaking in a glorious demonstration of our power."
 
-    What would happen if I didn't pull Daru's arm? Would the expected happen? Would this sloppy body of Daru's get caught in the truck's body and get sent flying like a rag doll? Would his head or arm get blown off and his crimson blood gush everywhere? Would everyone scream after witnessing such an event?
+----
+----
 
-    If I go back to the start of the loop, Daru won't even have a scratch. It doesn't matter how much blood he gushes, or how far his entrails come out. 
+Cycle 53█9
+I'm tired of it all. Every time I go to sleep, I wonder if I'll wake up again. I'm scared that it'll be the last time I said good night to her. Did I say it right? Will she be okay? What if one of us just won't wake up tomorrow?
 
-    Moreover, everyone needs a little spice in their life. An encounter with a splatter scene is necessary to arouse one's own survival instinct by invoking fear. If I keep soaking in these lukewarm days, I'd lose my motivation to seek peace.
+Cycle 5██4.
+I don't want to die, I don't want to live anymore either.
+Everything is just so exhausting. I just want to lie down and disappear.
 
-    As far as these two days are concerned,
+Cycle ███8
+lost another tooth
+there was so much blood
+my hands were shaking
+why is my hair falling out
 
-    I am God.
+i can't sleep
+i just want to sleep
+please just let me sleep
+please, just make it stop
+please
 
-    A 48-hour eternity. I am the Creator of this paradise. 
+Cycle ████
 
-    Tomorrow will be another good day for everyone.`,
+████████████ tell whether awake or asleep anymore.
+████████ vision is blurry and my fingers hurt. my back, ████████ hurt. my teeth hurt. ████ eyes hurt, everything hurts, all of the time. i can't go on ████████
+
+████ please make it stop
+
+
+---
+---
+---
+
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+████ [This space is intentionally left blank]         ████████████████████████████████████████████ ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+`,
     style: "quote",
   },
   {

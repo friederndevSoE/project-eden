@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { projectSearchData } from "../projectSearchData";
 import MusicPlayer from "@/components/MusicPlayer";
-import { englishSections } from "@/app/data/HonkaiImpact";
+
+import UnlockButton from "@/components/UnlockButton";
 
 export default function PasswordGate() {
   const project = projectSearchData.find((p) => p.id === 4);
@@ -137,6 +138,11 @@ export default function PasswordGate() {
               </span>
             </p>
             <MusicPlayer src="/audio/Moon Halo.mp3" />
+            <div className="flex flex-col items-end">
+              <button className="cursor-not-allowed px-4 py-1.5 font-medium text-gray-700 border border-brand bg-gray-200 text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#1D1B1C] ">
+                Translate to Vietnamese
+              </button>
+            </div>
           </div>
           <div className="max-w-full relative text-[#292326] mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 ">
             <p className="text-gray-800 p-4 bg-brand-quote-bg/8 italic rounded mb-4">
@@ -983,13 +989,7 @@ export default function PasswordGate() {
         ))}
       </motion.div>
 
-      <button
-        onClick={handleUnlock}
-        className="px-6 py-3 bg-brand text-white font-semibold 
-                   hover:bg-brand-hover transition-colors"
-      >
-        Unlock
-      </button>
+      <UnlockButton onClick={handleUnlock}></UnlockButton>
 
       <AnimatePresence>
         {error && (

@@ -11,23 +11,32 @@ export default function SteinsGate() {
   const project = projectSearchData.find((p) => p.id === "center");
   return (
     <>
-      <div className="z-[99] bg-white">
-        <div
-          key={project?.id}
-          style={{ backgroundColor: project?.color }}
-          className=" font-bold text-white py-1 px-2"
-        >
-          {project?.tags}
-        </div>
-
-        <MusicPlayer src="/audio/MBU_Ending.mp3" />
-      </div>
+      <MusicPlayer src="/audio/MBU_Ending.mp3" />
       <PostContent
         englishSections={englishSections}
-        images={images}
-        //update this key for every project
+        images={[]}
         storageKey="project-center-vietnamese"
       />
+      <div className="flex flex-col gap-2 mt-[-12px] text-center italic px-3 md:px-12">
+        <p>
+          <span className="hover:underline">F</span>aint or the brightest stars
+          will eventually burn themselves out.
+        </p>
+        <p>
+          <span className="hover:underline">A</span>ll that remains in the
+          courtyard will one day cease to exist, along with its soul, along with
+          “you”, would “you” remember, or would “you” be here no longer?
+        </p>
+        <p>
+          <span className="hover:underline">D</span>istant echo will one day be
+          embraced by darkness and silence, leaving some lonely dots of light
+          drifting to nowhere.
+        </p>
+        <p>
+          <span className="hover:underline">E</span>
+          ventually, the light will go out, go out along with their names.
+        </p>
+      </div>
     </>
   );
 }

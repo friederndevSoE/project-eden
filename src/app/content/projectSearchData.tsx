@@ -19,8 +19,8 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: 1,
     title: "Project One",
-    tags: ["Kevin"],
-    color: "#60a5fa",
+    tags: ["Signalis"],
+    color: "#c85858",
   },
   {
     id: 2,
@@ -31,25 +31,31 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: 3,
     title: "Project Three",
-    tags: ["Eden"],
-    color: "#34d399",
+    tags: ["Until Then"],
+    color: "#85b960",
   },
   {
     id: 4,
     title: "Project Four",
     tags: ["Honkai Impact 3rd"],
-    color: "#facc15",
+    color: "#b876cb",
   },
   {
     id: 5,
     title: "Project Five",
-    tags: ["Kalpas"],
-    color: "#fb7185",
+    tags: ["Mind Beneath Us"],
+    color: "#91c5d7",
   },
   {
     id: 6,
     title: "Project Six",
-    tags: ["Su"],
+    tags: ["Refind Self"],
+    color: "#b49e67",
+  },
+  {
+    id: 7,
+    title: "Project Seven",
+    tags: ["seven"],
     color: "#38bdf8",
   },
 ];

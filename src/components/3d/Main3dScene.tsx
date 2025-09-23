@@ -355,7 +355,7 @@ export default function InteractiveSphere() {
         color={tooltip.color}
       />
 
-      {/* 🔍 Floating Search Button */}
+      {/* Floating Search Button */}
       <button
         className="fixed bottom-6 right-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-40"
         onClick={() => setIsSearchOpen(true)}
@@ -363,7 +363,7 @@ export default function InteractiveSphere() {
         Search
       </button>
 
-      {/* 🔎 Command Bar Search */}
+      {/* Command Bar Search */}
       <CommandBar
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

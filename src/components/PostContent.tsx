@@ -109,7 +109,7 @@ export default function PostContent({
       <button
         onClick={isTranslated ? handleRevert : handleTranslate}
         disabled={isLoading}
-        className=" px-4 py-1.5 font-medium text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#1D1B1C] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200"
+        className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200"
       >
         {isLoading
           ? "Translating..."

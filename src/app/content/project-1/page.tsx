@@ -1,15 +1,13 @@
-//this is for SIGNALIS
-
 import PostContent from "@/components/PostContent";
 import { images } from "@/app/data/CourtYard";
 import { projectSearchData } from "../projectSearchData";
 import MusicPlayer from "@/components/MusicPlayer";
 
-import { englishSections } from "@/app/data/CourtYard";
+import { englishSections } from "@/app/data/Signalis";
 
 export default function SteinsGate() {
   //change the id accordingly using projectSearchData
-  const project = projectSearchData.find((p) => p.id === 2);
+  const project = projectSearchData.find((p) => p.id === 1);
   return (
     <>
       <div className="z-[99] bg-white">
@@ -33,7 +31,7 @@ export default function SteinsGate() {
         englishSections={englishSections}
         images={images}
         //update this key for every project
-        storageKey="project-2-vietnamese"
+        storageKey="project-1-vietnamese"
       />
     </>
   );

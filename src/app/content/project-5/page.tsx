@@ -1,12 +1,38 @@
-import React from "react";
+import PostContent from "@/components/PostContent";
+import { images } from "@/app/data/CourtYard";
+import { projectSearchData } from "../projectSearchData";
+import MusicPlayer from "@/components/MusicPlayer";
 
-const FifthContent = () => {
+import { englishSections } from "@/app/data/MindBeneathUs";
+
+export default function SteinsGate() {
+  //change the id accordingly using projectSearchData
+  const project = projectSearchData.find((p) => p.id === 5);
   return (
-    <div>
-      <h1 className="text-xl font-bold">FIVE</h1>
-      <p>This is five!</p>
-    </div>
-  );
-};
+    <>
+      <div className="z-[99] bg-white">
+        <div
+          key={project?.id}
+          style={{ backgroundColor: project?.color }}
+          className=" font-bold text-white py-1 px-2"
+        >
+          {project?.tags}
+        </div>
 
-export default FifthContent;
+        <p className="text-xs mt-1 mb-2">
+          Beginner Friendly{" "}
+          <span className="py-0.5 px-1 rounded-md bg-slate-200 text-slate-600 ">
+            Yes
+          </span>
+        </p>
+        <MusicPlayer src="/audio/MBU_Ending.mp3" />
+      </div>
+      <PostContent
+        englishSections={englishSections}
+        images={images}
+        //update this key for every project
+        storageKey="project-5-vietnamese"
+      />
+    </>
+  );
+}
