@@ -68,7 +68,8 @@ You feel part of him slowly dies and you suddenly find yourself wanting to see m
 It’s a fun, passionate story about science, it’s a concise, engaging story about fatalism and determinism`,
     style: "default",
   },
-
+  //line break
+  { text: "---", style: "hr" },
   {
     text: `This game focuses on the ‘novel’ part. I can make an argument that there is little ‘game’ here since 99% of the time, you would be pressing the A button to forward to the next dialogue, with the last 1% is choosing your save slot. With no mini game or interesting gameplay mechanic to spice things up, just ... simply read the story, like a book.
 
@@ -78,7 +79,8 @@ I fondly remember during the last arc, when I screamed internally and told mysel
 `,
     style: "conversation",
   },
-
+  //line break
+  { text: "---", style: "hr" },
   {
     text: `I've seen Steins Gate influence, a fellow friend who finds Okabe's personality cool and is inspired to live freely like him. How the story pulls a person out of their darkest period of their life, kick-starts a hobby, a Youtube channel career, gives courage, inspires viewers and players to live more genuinely…
 

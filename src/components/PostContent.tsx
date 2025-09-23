@@ -5,10 +5,10 @@ import ImageGallery from "@/components/ImageGallery";
 import { motion } from "framer-motion";
 
 const styleTemplates = {
-  default: "text-black",
-  quote: "text-gray-800 p-4 bg-slate-300/40 italic rounded",
-  summary: "text-blue-600",
-  conversation: "text-yellow-600",
+  default: "text-[#292326]",
+  quote: "text-gray-800 p-4 bg-brand-quote-bg/8 italic rounded",
+  summary: "text-[#6d0b3b]",
+  conversation: "text-yellow-700",
 };
 
 export default function PostContent({
@@ -104,11 +104,12 @@ export default function PostContent({
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-end w-full">
+      {/* the translate button */}
       <button
         onClick={isTranslated ? handleRevert : handleTranslate}
         disabled={isLoading}
-        className="px-3 py-3 bg-red-600 text-white"
+        className=" px-4 py-1.5 font-medium text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#1D1B1C] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200"
       >
         {isLoading
           ? "Translating..."
@@ -117,8 +118,9 @@ export default function PostContent({
           : "Translate to Vietnamese"}
       </button>
 
+      {/* the content */}
       <div
-        className="relative text-black mt-4 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
+        className="relative text-black mt-2 p-3 border-l-2 border-y-2 md:border-2 border-gray-200 transition-all duration-300"
         style={{ minHeight: contentHeight ? `${contentHeight}px` : "auto" }}
       >
         {isLoading ? (
@@ -148,7 +150,7 @@ export default function PostContent({
           <div ref={contentRef}>
             {sections.map((section, idx) =>
               section.style === "hr" ? (
-                <hr key={idx} className="my-6 border-t-2 border-gray-400" />
+                <hr key={idx} className="my-6 border-t-2 border-gray-300" />
               ) : (
                 <p
                   key={idx}

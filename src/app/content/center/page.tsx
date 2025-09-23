@@ -4,13 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PasswordGate() {
-  const [values, setValues] = useState<string[]>(["", "", ""]);
+  const PASSWORD = "FADE"; // ✅ changed password
+
+  const [values, setValues] = useState<string[]>(
+    Array(PASSWORD.length).fill("")
+  );
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [error, setError] = useState("");
   const [shake, setShake] = useState(false);
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
-
-  const PASSWORD = "ELY";
 
   // Check if session already authorized
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function PasswordGate() {
   }, []);
 
   const resetInputs = () => {
-    setValues(["", "", ""]);
+    setValues(Array(PASSWORD.length).fill(""));
     inputsRef.current[0]?.focus();
   };
 
@@ -38,7 +40,7 @@ export default function PasswordGate() {
     if (error) setError("");
 
     // Move to the next box if a character was typed
-    if (val && index < 2) {
+    if (val && index < PASSWORD.length - 1) {
       inputsRef.current[index + 1]?.focus();
     }
   };
@@ -71,7 +73,7 @@ export default function PasswordGate() {
       inputsRef.current[index - 1]?.focus();
       e.preventDefault();
     }
-    if (e.key === "ArrowRight" && index < 2) {
+    if (e.key === "ArrowRight" && index < PASSWORD.length - 1) {
       inputsRef.current[index + 1]?.focus();
       e.preventDefault();
     }
@@ -108,6 +110,7 @@ export default function PasswordGate() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
+        {/* main content here */}
         <h1 className="text-4xl font-bold">Protected Content Revealed 🎉</h1>
       </motion.div>
     );

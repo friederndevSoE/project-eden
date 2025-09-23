@@ -13,7 +13,7 @@ export const projectSearchData: ProjectMeta[] = [
   {
     id: "center",
     title: "Overview",
-    tags: ["Elysia"],
+    tags: ["The Courtyard"],
     color: "#f87171",
   },
   {
@@ -26,7 +26,7 @@ export const projectSearchData: ProjectMeta[] = [
     id: 2,
     title: "Project Two",
     tags: ["Steins Gate"],
-    color: "#a78bfa",
+    color: "#79706e",
   },
   {
     id: 3,
