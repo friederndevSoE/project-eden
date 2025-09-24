@@ -5,7 +5,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/MindBeneathUs";
 
-export default function SteinsGate() {
+export default function Blog() {
   //change the id accordingly using projectSearchData
   const project = projectSearchData.find((p) => p.id === 5);
   return (

@@ -6,7 +6,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/SteinsGate";
 
-export default function SteinsGate() {
+export default function Blog() {
   //change the id accordingly using projectSearchData
   const project = projectSearchData.find((p) => p.id === 2);
   return (
@@ -23,11 +23,11 @@ export default function SteinsGate() {
 
         <p className="text-xs mt-1 mb-2">
           Beginner Friendly{" "}
-          <span className="py-0.5 px-1 rounded-md bg-orange-200 text-orange-950 ">
+          <span className="py-0.5 px-1 rounded-md  bg-orange-200 text-orange-950 ">
             Depends
           </span>
         </p>
-        <MusicPlayer src="/audio/MBU_Ending.mp3" />
+        <MusicPlayer src="/audio/GATE-OF-STEINER-Piano.mp3" />
       </div>
       <PostContent
         englishSections={englishSections}

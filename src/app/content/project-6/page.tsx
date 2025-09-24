@@ -5,7 +5,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/RefindSelf";
 
-export default function SteinsGate() {
+export default function Blog() {
   //change the id accordingly using projectSearchData
   const project = projectSearchData.find((p) => p.id === 6);
   return (
@@ -26,7 +26,7 @@ export default function SteinsGate() {
             Yes
           </span>
         </p>
-        <MusicPlayer src="/audio/MBU_Ending.mp3" />
+        <MusicPlayer src="/audio/refind_self.m4a" />
       </div>
       <PostContent
         englishSections={englishSections}

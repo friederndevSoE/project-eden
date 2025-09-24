@@ -5,7 +5,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/UntilThen";
 
-export default function SteinsGate() {
+export default function Blog() {
   //change the id accordingly using projectSearchData
   const project = projectSearchData.find((p) => p.id === 3);
   return (
@@ -26,7 +26,7 @@ export default function SteinsGate() {
             Yes
           </span>
         </p>
-        <MusicPlayer src="/audio/MBU_Ending.mp3" />
+        <MusicPlayer src="/audio/Until-Then-Memories.mp3" />
       </div>
       <PostContent
         englishSections={englishSections}

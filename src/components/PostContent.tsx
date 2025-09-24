@@ -109,12 +109,12 @@ export default function PostContent({
       <button
         onClick={isTranslated ? handleRevert : handleTranslate}
         disabled={isLoading}
-        className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200"
+        className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200 cursor-pointer"
       >
         {isLoading
           ? "Translating... Don't exit"
           : isTranslated
-          ? "Xem nguyên bản"
+          ? "Xem nội dung nguyên bản"
           : "Translate to Vietnamese"}
       </button>
 
@@ -126,7 +126,7 @@ export default function PostContent({
         {isLoading ? (
           <div className="flex flex-col items-center justify-center h-full text-gray-500 space-y-2">
             <motion.div
-              className="flex space-x-2"
+              className="flex space-x-2 mt-4"
               initial={{ opacity: 0.2 }}
               animate={{ opacity: 1 }}
               transition={{
@@ -135,19 +135,17 @@ export default function PostContent({
                 repeatType: "reverse",
               }}
             >
-              <span className="w-3 h-3 bg-orange-800 rounded-full" />
-              <span className="w-3 h-3 bg-orange-800 rounded-full" />
-              <span className="w-3 h-3 bg-orange-800 rounded-full" />
+              <span className="w-3 h-3 bg-brand rounded-full" />
+              <span className="w-3 h-3 bg-brand rounded-full" />
+              <span className="w-3 h-3 bg-brand rounded-full" />
             </motion.div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mt-4 gap-3">
               <p>
                 Nội dung đang được dịch, thời gian chờ có thể lên tới
                 <span className="underline"> 3 phút</span>.
               </p>
-              <p>
-                Note: Nội dung nguyên bản luôn chứa đựng những gì chân thật
-                nhất. Nếu có thể, mong hữu khách có thể trải nghiệm ngôn ngữ
-                được viết ban đầu ở những vì sao tới.
+              <p className="text-sm italic text-center">
+                Note: Nội dung chân thật nhất luôn nằm ở ngôn ngữ nguyên bản.
               </p>
             </div>
           </div>

@@ -44,7 +44,7 @@ export const projectSearchData: ProjectMeta[] = [
     id: 5,
     title: "Project Five",
     tags: ["Mind Beneath Us"],
-    color: "#91c5d7",
+    color: "#7BA7B5",
   },
   {
     id: 6,

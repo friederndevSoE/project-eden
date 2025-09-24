@@ -150,10 +150,32 @@ This can only be felt through actively engaging with it, by playing the game. I 
   },
 
   {
-    text: `"Eules tend to form large groups and like to sing and dance, as the original neural pattern for this unit was a ballet dancer. Persona degradation can be easily prevented in this unit by making sure they have access to music. Always place at least one mirror in Eule dorms, as they have a strong urge to check their own appearance at regular intervals. Eules' Persona stabilizes by keeping a tidy appearance and through regular social interactions. Eules will often organize in groups of roughly ten units and give each other themed nicknames."
+    text: `This God won't forgive you
 
-"Elster units were chosen for their adaptability and reliability under long-term isolation conditions. Stoic and reserved, Elster units have a relatively stable neural pattern. It is best for you to leave it alone and interact with the Elster unit as little as possible. Elsters' neural pattern was a soldier of Vinetan origin, so their needs are basic. Avoid talking to the Elster unit about the war.
-Penrose vessels are fitted with a specialized calibration pod which may help with Persona stabilization. To avoid resurfacing of Gestalt memories, do not show or give the Elster unit photographs, especially of soldiers during the war. Do not show the Elster unit movies, or let it listen to music. Do not try to befriend the Elster unit."`,
+Perhaps, this is hell.
+____________________________
+
+Great holes secretly are digged where Earth's pores ought to suffice, and things have learnt to walk which ought to crawl.
+____________________________
+
+We were dancing to that song they start the broadcast with. We fell asleep watching that movie we had seen before so many times. If only I could take us back to that time when we were happy.
+
+These memories are mine now.
+
+She'll never dance with us again.
+____________________________
+
+I have become whole again
+I wear no mask
+And I hate everything
+____________________________
+
+Are you still looking for answer where there are only questions?
+____________________________
+
+... You shouldn't have returned
+
+`,
     style: "quote",
   },
 
@@ -164,7 +186,10 @@ How about imagining there are propaganda posters in almost every room you explor
 
 Also, imagine there is a religious influence that is also being oppressed by the government? Everywhere you go, there is this familiar and recurring theme of cycles? rebirth? 6? 512? These must point to something, right?
 
-I admit my tiny brain can't comprehend and make those connections myself, if you are the type of person who enjoys digging up every corner and letting yourself be absorbed by the rich world-building and actual thoughtful complex puzzles, I hope in your playthrough, you would be able to piece the information together to make the full picture and reach your own incomplete but satisfying understanding.`,
+I admit my tiny brain can't comprehend and make those connections myself, if you are the type of person who enjoys digging up every corner and letting yourself be absorbed by the rich world-building and actual thoughtful complex puzzles, I hope in your playthrough, you would be able to piece the information together to make the full picture and reach your own incomplete but satisfying understanding.
+
+This game world building is god like.
+`,
     style: "default",
   },
 ];
