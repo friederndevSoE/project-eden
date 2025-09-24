@@ -17,7 +17,7 @@ export default function Blog() {
         images={[]}
         storageKey="project-center-vietnamese"
       />
-      <div className="flex flex-col gap-2 mt-[-12px] text-center italic px-3 md:px-12">
+      <div className="flex flex-col gap-2 mt-[-12px] text-left italic pl-4">
         <p>
           <span className="hover:underline">F</span>aint or the brightest stars
           will eventually burn themselves out.

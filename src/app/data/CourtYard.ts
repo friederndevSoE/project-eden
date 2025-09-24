@@ -11,9 +11,12 @@ export const englishSections = [
 
 I approach gaming as an experience no different than reading a story or watching a movie. I want to focus on the story and the creative ways it is presented through this interactive art form.
 
-A story where you can feel the political oppression and propaganda at every corner, even though humanity has evolved to the point where we can travel the stars? Eerily real and captivating that it sticks with you and makes you glance at how real life works.
-A story that explores a much more niche and personal problem, like trauma, and makes you confront guilt, making game decisions that make you feel uneasy in your stomach? Finishing it makes you question the hardship other unfortunate souls have to get through daily.
-A story that instantly takes you back to the fond memory of your school days, reminds you of the friends and genuine connections you once made, with every interaction makes you feel the warmth inside, and you can’t help but feel deep appreciation and want to tell all your friends about.
+A story immerses you in a whole new world where political oppression and propaganda linger on every corner, even as humanity has evolved to travel the stars. How everything is tied to a system with no hope of changing, eerily familiar, eerily real, you see the world the developer built in mind was extraordinary. 
+
+A story that draws you into struggles, forcing you to confront trauma and guilt through choices that make your stomach uneasy, leaving you to question the silent battles some people have to face daily.
+
+A story that quietly transports you back to your fond school days, reminds you of the friends and genuine connections you made. Every scene and interaction makes you remember the warmth inside, so much so that you wish to tell the world about it.
+
 
 In a way, it’s the same as every other story you heard, and yet it’s not really so.
 
