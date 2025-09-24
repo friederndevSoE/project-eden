@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { px } from "framer-motion";
 
 interface ImageItem {
   src: string;
@@ -26,14 +27,13 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
               setSelected(img);
               setZoomed(false); // reset zoom when new image opens
             }}
-            className="shrink-0 border-2 border-purple-500 m-auto"
           >
             <Image
               src={img.src}
               alt={img.alt || ""}
-              width={180}
+              width={680}
               height={180}
-              className="cursor-pointer h-40 w-40 md:h-60 md:w-60 object-cover transition-transform hover:scale-103"
+              className="cursor-pointer h-auto w-full object-cover transition-transform hover:scale-103"
             />
           </button>
         ))}
@@ -45,8 +45,23 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           {/* Close button */}
           <button
             onClick={() => setSelected(null)}
-            className="absolute bottom-8 m-auto w-12 h-12 bg-red-400 z-50"
-          ></button>
+            className="absolute bottom-8 m-auto w-12 h-12 bg-black border-2 border-slate-700 rounded-full z-50 cursor-pointer hover:scale-[110%] transition-all duration-200 ease-in-out"
+          >
+            <div className="flex items-center justify-center">
+              <svg
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="#ffffff"
+                  d="m3.5 2.086l4.5 4.5l4.5-4.5L13.914 3.5L9.414 8l4.5 4.5l-1.414 1.414l-4.5-4.5l-4.5 4.5L2.086 12.5l4.5-4.5l-4.5-4.5z"
+                ></path>
+              </svg>
+            </div>
+          </button>
 
           {/* Clickable Image for Zoom */}
           <div

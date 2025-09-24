@@ -86,9 +86,4 @@ Only indie games can do this, only they can have the guts to tell such a narrati
   },
 ];
 
-export const images = [
-  { src: "/artwork/photo_2023-07-02_11-59-38.jpg" },
-  { src: "/artwork/6qkxkyrcthj71.png" },
-  { src: "/artwork/Screenshot 2025-07-15 144005.png" },
-  { src: "/artwork/cover.7566f8a5.avif" },
-];
+export const images = [{ src: "/artwork/Utsuwa.png" }];

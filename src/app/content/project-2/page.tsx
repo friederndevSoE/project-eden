@@ -1,10 +1,10 @@
 import PostContent from "@/components/PostContent";
 import { projectSearchData } from "../projectSearchData";
 
-import { images } from "@/app/data/CourtYard";
 import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/SteinsGate";
+import { images } from "@/app/data/SteinsGate";
 
 export default function Blog() {
   //change the id accordingly using projectSearchData

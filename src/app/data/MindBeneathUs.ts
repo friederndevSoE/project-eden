@@ -118,9 +118,4 @@ If you pull some bullshit, well, at least ... I would know him a bit better.
   },
 ];
 
-export const images = [
-  { src: "/artwork/photo_2023-07-02_11-59-38.jpg" },
-  { src: "/artwork/6qkxkyrcthj71.png" },
-  { src: "/artwork/Screenshot 2025-07-15 144005.png" },
-  { src: "/artwork/cover.7566f8a5.avif" },
-];
+export const images = [{ src: "/artwork/Mind Beneath Us.png" }];

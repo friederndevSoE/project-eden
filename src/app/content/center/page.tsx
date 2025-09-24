@@ -1,7 +1,6 @@
 import PostContent from "@/components/PostContent";
 import { projectSearchData } from "../projectSearchData";
 
-import { images } from "@/app/data/CourtYard";
 import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/CourtYard";
@@ -11,7 +10,7 @@ export default function Blog() {
   const project = projectSearchData.find((p) => p.id === "center");
   return (
     <>
-      <MusicPlayer src="/audio/MBU_Ending.mp3" />
+      <MusicPlayer src="/audio/TruE-Ed-Ver.mp3" />
       <PostContent
         englishSections={englishSections}
         images={[]}

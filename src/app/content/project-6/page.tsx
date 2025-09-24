@@ -1,9 +1,9 @@
 import PostContent from "@/components/PostContent";
-import { images } from "@/app/data/CourtYard";
 import { projectSearchData } from "../projectSearchData";
 import MusicPlayer from "@/components/MusicPlayer";
 
 import { englishSections } from "@/app/data/RefindSelf";
+import { images } from "@/app/data/RefindSelf";
 
 export default function Blog() {
   //change the id accordingly using projectSearchData

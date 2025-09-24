@@ -959,6 +959,9 @@ export default function PasswordGate() {
               see something similar in your own time.
             </p>
           </div>
+          <div className="italic text-right text-sm text-slate-500 my-12">
+            ~ Their drawing ... are decicated to somewhere faraway from here.
+          </div>
         </>
       </motion.div>
     );

@@ -32,10 +32,10 @@ export default function PostContent({
   const contentRef = useRef<HTMLDivElement>(null);
 
   //disable this for testing
-  // useEffect(() => {
-  //   const saved = localStorage.getItem(storageKey);
-  //   if (saved) setVietnameseSections(JSON.parse(saved));
-  // }, [storageKey]);
+  useEffect(() => {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) setVietnameseSections(JSON.parse(saved));
+  }, [storageKey]);
 
   const handleTranslate = async () => {
     if (contentRef.current) {
@@ -55,29 +55,17 @@ export default function PostContent({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          text: englishSections.map((s) => s.text).join("\n\n"),
+          text: englishSections
+            .map((s) => s.text)
+            .join("\n\n---SECTION---\n\n"),
         }),
       });
 
       if (!response.ok) throw new Error("Translation API failed");
 
       const data = await response.json();
-      const translatedArr: string[] = [];
+      const translatedArr = data.translatedText.split("\n\n---SECTION---\n\n");
 
-      for (const section of englishSections) {
-        if (section.style === "hr") {
-          translatedArr.push("---");
-          continue;
-        }
-
-        const res = await fetch("/api/translate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: section.text }),
-        });
-        const data = await res.json();
-        translatedArr.push(data.translatedText);
-      }
       const translatedWithStyles = englishSections.map((s, i) => ({
         text: translatedArr[i] || s.text,
         style: s.style,
@@ -104,15 +92,15 @@ export default function PostContent({
   };
 
   return (
-    <div className="flex flex-col items-end w-full">
+    <div className="flex flex-col items-start w-full">
       {/* the translate button */}
       <button
         onClick={isTranslated ? handleRevert : handleTranslate}
         disabled={isLoading}
-        className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1  w-fit transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200 cursor-pointer"
+        className=" px-4 py-1.5 text-brand border border-brand  text-sm mr-1 m-auto transition-all shadow-[3px_3px_0px_#61384c] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-orange-200 cursor-pointer"
       >
         {isLoading
-          ? "Translating... Don't exit"
+          ? "Translating... Don't exit..."
           : isTranslated
           ? "Xem nội dung nguyên bản"
           : "Translate to Vietnamese"}
@@ -140,12 +128,12 @@ export default function PostContent({
               <span className="w-3 h-3 bg-brand rounded-full" />
             </motion.div>
             <div className="flex flex-col items-center mt-4 gap-3">
-              <p>
-                Nội dung đang được dịch, thời gian chờ có thể lên tới
-                <span className="underline"> 3 phút</span>.
+              <p className="text-center">
+                Đang được dịch sang tiếng Việt, thời gian chờ có thể lên tới
+                <span className="underline"> 2 phút</span>.
               </p>
               <p className="text-sm italic text-center">
-                Note: Nội dung chân thật nhất luôn nằm ở ngôn ngữ nguyên bản.
+                Lưu ý: Nội dung chân thật nhất luôn nằm ở ngôn ngữ nguyên bản.
               </p>
             </div>
           </div>

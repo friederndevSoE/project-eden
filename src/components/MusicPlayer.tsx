@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 
 interface MusicPlayerProps {
   src: string;
@@ -20,8 +20,6 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
     });
 
     soundRef.current = sound;
-    // sound.play();
-    // setIsPlaying(true);
 
     return () => {
       sound.unload();
@@ -46,14 +44,29 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
   };
 
   return (
-    <div className=" flex items-center border-y border-l md:border border-black mb-2">
+    <div className="flex items-center border-y border-l md:border border-black mb-2 relative">
+      {isPlaying && (
+        <span
+          className="text-[13px] font-medium text-[#61384c] absolute 
+        
+
+        left-0
+        top-16
+      
+        
+        md:top-22"
+        >
+          {" "}
+          Now playing...{" "}
+        </span>
+      )}
       <button
         onClick={togglePlay}
         className="p-3 md:p-6 hover:bg-orange-200 transition-all duration-200 ease-in-out border-r border-black cursor-pointer"
       >
         {isPlaying ? (
+          // Pause Icon
           <svg
-            xmlnsXlink="http://www.w3.org/1999/xlink"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -65,8 +78,8 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
             ></path>
           </svg>
         ) : (
+          // Play Icon
           <svg
-            xmlnsXlink="http://www.w3.org/1999/xlink"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -79,9 +92,9 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
           </svg>
         )}
       </button>
+
       <div className="w-[89%] flex items-center gap-2 mx-3">
         <svg
-          xmlnsXlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -100,7 +113,7 @@ export default function MusicPlayer({ src }: MusicPlayerProps) {
           step={0.01}
           value={volume}
           onChange={(e) => changeVolume(parseFloat(e.target.value))}
-          className=" w-full h-0.5 bg-orange-950/30 cursor-pointer appearance-none accent-[#61384c]"
+          className="w-full h-0.5 bg-orange-950/30 cursor-pointer appearance-none accent-[#61384c]"
         />
       </div>
     </div>

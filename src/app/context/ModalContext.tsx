@@ -55,7 +55,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
       <AnimatePresence>
         {modalOpen && DynamicContent && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center z-50 text-black"
+            className="fixed inset-0 flex items-center justify-center z-50 text-black "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
