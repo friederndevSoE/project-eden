@@ -30,7 +30,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
             <Image
               src={img.src}
               alt={img.alt || ""}
-              width={680}
+              width={380}
               height={180}
               className="cursor-pointer h-auto w-full object-cover transition-transform hover:scale-103"
             />
