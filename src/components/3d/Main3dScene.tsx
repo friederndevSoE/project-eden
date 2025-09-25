@@ -2,13 +2,15 @@
 
 import React, { useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Stars, useCursor } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
 import CommandBar from "../CommandBar";
 import { useModal } from "@/app/context/ModalContext";
 
 import { projectSearchData } from "@/app/content/projectSearchData";
+
+import { ThreeEvent } from "@react-three/fiber";
 
 // Project data types and data
 export type ProjectId = number | "center";
@@ -49,7 +51,6 @@ const Tooltip = ({
 
 const Dot = ({
   position,
-  id,
   color,
   onClick,
   onHover,
@@ -69,19 +70,18 @@ const Dot = ({
   const [hovered, setHovered] = useState(false);
   const ringRef = useRef<THREE.Mesh>(null);
 
-  const handlePointerOver = (event: any) => {
+  const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
     setHovered(true);
     onHover(true, { x: event.clientX, y: event.clientY });
     document.body.style.cursor = "pointer";
   };
-
-  const handlePointerOut = () => {
+  const handlePointerOut = (_event: ThreeEvent<PointerEvent>) => {
     setHovered(false);
     onHover(false);
     document.body.style.cursor = "default";
   };
 
-  const handlePointerMove = (event: any) => {
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (hovered) {
       onHover(true, { x: event.clientX, y: event.clientY });
     }
