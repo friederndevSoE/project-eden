@@ -10,8 +10,7 @@ export const englishSections = [
     text: `It's charming to look back at the pre-Steam Deck experience.
 
 I spent every Saturday night enjoying this game, usually for an hour or more after 10 pm. An ideal period, work is done, no one to disturb, quiet and peaceful.
-10 hours of gameplay, around 2 months, headphones on, it gradually became a routine I enjoy. I sit down and just … play, no motive, no voice in the back of my head telling me to analyse and break everything down, just pure experience, not knowing a thing about genre, about Steam platform. Just a simple buy and play, nothing more.
-`,
+10 hours of gameplay, around 2 months, headphones on, it gradually became a routine I enjoy. I sit down and just … play, no motive, no voice in the back of my head telling me to analyse and break everything down, just pure experience, not knowing a thing about genre, about Steam platform. Just a simple buy and play, nothing more.`,
     style: "default",
   },
   //line break

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const styleTemplates = {
   default: "text-[#292326]",
   quote: "text-gray-800 p-4 bg-brand-quote-bg/8 italic rounded",
-  summary: "text-[#6d0b3b]",
+  summary: "text-[#61384c]",
   conversation: "text-yellow-700",
 };
 
@@ -79,7 +79,9 @@ export default function PostContent({
     } catch (error) {
       console.error("Failed to translate:", error);
       setSections(englishSections);
-      setErrorMessage("⚠️ Failed to translate. Please try again.");
+      setErrorMessage(
+        "⚠️ Failed to translate, sorry but Google might have remove the feature"
+      );
       setTimeout(() => setErrorMessage(null), 3000);
     } finally {
       setIsLoading(false);
