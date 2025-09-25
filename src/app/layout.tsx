@@ -14,7 +14,7 @@ const brico = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title: "Eden Courtyard",
-  description: "For the sky",
+  description: "If life was a play, then maybe I should choose when to end",
 };
 
 export default function RootLayout({

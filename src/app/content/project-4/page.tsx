@@ -163,13 +163,32 @@ export default function PasswordGate() {
               knowledge, emotion and impression accurately enough or the
               impression holds enough weight to leave a faithful and authentic
               'review'? Or shouldn’t I hold that standard and just write what I
-              feel at the present moment? Time passed, impression changed,
-              discovering more layers while forgetting some. Some stay and stick
-              well, some become fuzzy and harder to recollect. It feels somewhat
-              a bit less authentic to sit on it too long and write about the
-              stuff I don’t vividly remember. I started writing this as a
-              regular review, but after weeks of constant revisions, this game
-              deserves something a little bit different.
+              feel at the present moment?
+              <br />
+              <br /> Time passed, impression changed, discovering more layers
+              while forgetting some. Some stay and stick well, some become fuzzy
+              and harder to recollect. It feels somewhat a bit less authentic to
+              sit on it too long and write about the stuff I don’t vividly
+              remember. <br />
+              <br />I started writing this as a regular review, but after weeks
+              of constant revisions, this game deserves something a little bit
+              different.
+              <br />
+              <br />
+              Because it’s a gatcha game, the playing experience is different{" "}
+              <br />
+              Because it’a a gatcha game, you can’t really play freely whenever
+              you want, but only bit by bit everyday
+              <br />
+              Because it’s a gatcha game, you are restrained to it’s limiting
+              design philosophy and are forced to manuvour around it little by
+              little
+              <br />
+              Because it’s a gatcha game, you have to make all sort of
+              compromise to sit down and enjoy it.
+              <br />
+              Because it’s a gatcha game, somehow … the impression is much much
+              more powerful.
             </p>
             <hr className="my-4" />
             <p>
@@ -179,47 +198,59 @@ export default function PasswordGate() {
               read this? Maybe they fall from grace? Is the company finally
               public? The next EA and Blizzard, or still just a Chinese gaming
               company that happens to know exactly what appeals to the masses.
+              <br />
+              <br />
               But let’s step back for a bit, to a more peaceful time, where they
               created this game that deserved a spot here. Did this game give
               birth to this specific project idea and shape its concept to begin
-              with? Maybe. It was the time when you felt the company prioritized
+              with? Maybe.
+              <br />
+              <br /> It was the time when you felt the company prioritized
               passion and love, rather than market trends and what work for the
               masses. People in charge care, sprinkle their effort even in
               trivial things such as maintenance messages, mailbox letters,
-              characters’ birthday CG,... they were brimming with love. The
-              cheesy dialogue they wrote, the clumsy art they drew that heavily
-              depends on 3D modelling, the songs they composed, everything was
-              so … raw and human, we had work of art, compare to glorified
-              promotional materials. Honkai Impact 3rd. So what even is the
-              Honkai? Honkai is something that grows along with civilization,
-              the more advanced the civilization, the stronger the honkai
-              becomes. No one knows where it comes from, to what extent it will
-              stop, but it seems to do one thing only, to destroy mankind… I
-              think? The concept lost its meaning ages ago, even in-game, and
-              even more when it was slapped on many different games with no
-              substance behind it. The setting of Honkai Impact 3rd couldn't be
-              simpler: cute girls fighting monsters. Like every shounen story
-              there is, they learn about fighting for something other than
-              themselves, about the cost of sacrifice, about choosing to live on
-              for the sake of others. They learn to fight and to protect, they
-              grow, mature and finally graduate.
+              characters’ birthday CG,... they were brimming with love.
+              <br />
+              <br /> The cheesy dialogue they wrote, the clumsy art they drew
+              that heavily depends on 3D modelling, the songs they composed,
+              everything was so … raw and human, we had work of art, compare to
+              glorified promotional materials.
+              <br />
+              <br /> Honkai Impact 3rd. So what even is the Honkai? Honkai is
+              something that grows along with civilization, the more advanced
+              the civilization, the stronger the honkai becomes. No one knows
+              where it comes from, to what extent it will stop, but it seems to
+              do one thing only, to destroy mankind… I think? The concept lost
+              its meaning ages ago, even in-game, and even more when it was
+              slapped on many different games with no substance behind it.{" "}
+              <br />
+              <br />
+              The setting of Honkai Impact 3rd couldn't be simpler: cute girls
+              fighting monsters. Like every shounen story there is, they learn
+              about fighting for something other than themselves, about the cost
+              of sacrifice, about choosing to live on for the sake of others.
+              They learn to fight and to protect, they grow, mature and finally
+              graduate.
             </p>
             <hr className="my-4" />
             <p>
               This is a gatcha game, most gamers would be very familiar with
-              this type of game and its live service nature. With every gatcha
-              game, the end experience is similar to burning out, whether you
-              notice an aggressive monetary strategy from the company or making
-              decisions that clearly focus on squeezing money out of your pocket
-              rather than the playing experience. Gradually, the grinding makes
-              you sick, the constant loop of chasing new content and flashy
-              characters tires you out, and it ends in resentment. But this is
-              the first time I treated it like a console game, meta, powercreep,
-              grinding, limited events, daily log-in, these things are just
-              secondary. Literally didn’t give a shit about a game mode just
-              because it doesn’t follow the chronological story order. The story
-              comes first, and when it’s finished, I close it, like closing a
-              book.
+              this type of game and its live service nature.
+              <br />
+              <br /> With every gatcha game, the end experience is similar to
+              burning out, whether you notice an aggressive monetary strategy
+              from the company or making decisions that clearly focus on
+              squeezing money out of your pocket rather than the playing
+              experience. Gradually, the grinding makes you sick, the constant
+              loop of chasing new content and flashy characters tires you out,
+              and it ends in resentment. <br />
+              <br />
+              But this is the first time I treated it like a console game, meta,
+              powercreep, grinding, limited events, daily log-in, these things
+              are just secondary. Literally didn’t give a shit about a game mode
+              just because it doesn’t follow the chronological story order. The
+              story comes first, and when it’s finished, I close it, like
+              closing a book.
             </p>
             <hr className="my-4" />
             <p className="underline uppercase text-lg font-bold my-4">STORY</p>

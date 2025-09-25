@@ -171,15 +171,23 @@ ____________________________
   },
 
   {
-    text: `It doesn’t feel very right to ‘spoil’ the world-building any further, as being thrown into the confusing mess is the intended game design decision. I strongly believe it’s so damn worth it to figure things out yourself, even if the picture you get in your mind is incomplete.
+    text: `Being thrown into the confusing mess is the intended game design decision. Is the intended Signalis experience. It’s so damn worth it to figure things out yourself, even if the picture you get in your mind is incomplete. Incomplete, yet still damn satifying, incomplete, yet it really makes you feel every weight behind it.
 
-How about imagining there are propaganda posters in almost every room you explore, cameras following you everywhere and tons of doors you aren’t given the right to access.
+    This game world building is god like.`,
+    style: "default",
+  },
+  {
+    text: `But you thought the good thing about this game is the rich world-building only? This is where Signalis rises up and deserves to hold the crowd of indie game classics.
 
-Also, imagine there is a religious influence that is also being oppressed by the government? Everywhere you go, there is this familiar and recurring theme of cycles? rebirth? 6? 512? These must point to something, right?
+Its story shines when showcasing the struggle, a soul doing everything to reach the promise. Navigating through this confusing world and only left you with questions, yet still you push through, you have to go, you have to fight, you are confused, you are hurt, everything is so fuzzy taht you can barely keep you sanity, there were you who have already tried and failed…. 
 
-I admit my tiny brain can't comprehend and make those connections myself, if you are the type of person who enjoys digging up every corner and letting yourself be absorbed by the rich world-building and actual thoughtful complex puzzles, I hope in your playthrough, you would be able to piece the information together to make the full picture and reach your own incomplete but satisfying understanding.
+Yet you have to go, she is calling you.
 
-This game world building is god like.
+The world makes your struggle real, it amplifies your journey and pulls you in every second of it, only the world this authentic makes you want to care, makes you want to walk just a bit further.
+
+Does pursuing your goal make everything fall apart? Does pursuing your goal make more people suffer as a byproduct? Can you do it?
+
+Perhaps this truly is hell...
 `,
     style: "default",
   },
