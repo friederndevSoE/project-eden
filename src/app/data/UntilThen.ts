@@ -122,10 +122,10 @@ If you find this piece of writing moving, maybe some part of it speaks to you an
     text: `"At least I was around."
 "But was it enough?"
 "..."
-________________________________________________________
+_____________________
 
 "Mark... Jake is gone, too. But I'm here. The piano club's here. Ridel's here. You're here. I'd feel better with you, too. I don't wanna lose you too."
-________________________________________________________
+_____________________
 
 "But maybe... just maybe ... I can feel alive again"`,
     style: "quote",
