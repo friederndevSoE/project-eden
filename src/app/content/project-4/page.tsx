@@ -855,10 +855,11 @@ export default function PasswordGate() {
               Life is not always rainbows and sunshine, compassion works
               differently here, people are a lot more ugly, yet at the same time
               can be a lot more beautiful. Maybe deep down in my heart, when the
-              time comes to make the difficult choice, I’ll try to remember her,
-              and try to lean on the side of love. I will mess up and stumble
-              along the way, but right now, I want to say until my final breath
-              that I will try.
+              time comes to make the difficult choice, maybe I can try to
+              remember her, maybe try to lean on the side of love, and just
+              maybe ... not contributing to burning this world. I will likely
+              mess up and stumble along the way, but right now, I want to say
+              until my final breath that I will try.
             </p>
             <p className="text-gray-800 p-4 bg-brand-quote-bg/8 italic my-4 rounded">
               These memories we share will never disappear. The feeling left
