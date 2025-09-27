@@ -5,6 +5,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 import CommandBar from "../CommandBar";
 import { useModal } from "@/app/context/ModalContext";
 
@@ -257,6 +259,8 @@ const RotatingSphere = ({
 };
 
 export default function InteractiveSphere() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [tooltip, setTooltip] = useState<{
     visible: boolean;
@@ -315,11 +319,13 @@ export default function InteractiveSphere() {
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
         <ambientLight intensity={0.9} />
         <pointLight position={[5, 5, 5]} />
+
+        {/* adjust the zoom */}
         <OrbitControls
           enablePan={false}
           enableZoom={true}
           minDistance={2}
-          maxDistance={13}
+          maxDistance={90}
         />
         <Stars
           radius={30}
@@ -365,9 +371,68 @@ export default function InteractiveSphere() {
       </button>
 
       {/* Patch notes button */}
-      <button className="fixed bottom-6 left-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-40 flex items-center gap-2 cursor-pointer">
-        test area
+      <button
+        className="fixed bottom-6 left-6 bg-black hover:bg-slate-900 transition-all duration-200 ease-linear border md:border-2 border-slate-700 rounded-full p-2 md:p-4 z-40 cursor-pointer"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <svg
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 20 20"
+          fill="#ffffff"
+        >
+          <g fill="#ffffff">
+            <path
+              fillRule="evenodd"
+              d="M10 7a2 2 0 0 1 2 2v7a2 2 0 1 1-4 0V9a2 2 0 0 1 2-2Z"
+              clipRule="evenodd"
+            ></path>
+            <path d="M12 4a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"></path>
+          </g>
+        </svg>
       </button>
+
+      {/* style the patch note */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed bottom-16 md:bottom-22 left-6 flex items-center justify-center z-50"
+            onClick={() => setIsOpen(false)} // close when clicking outside
+          >
+            <motion.div
+              key="popup"
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="p-4 bg-black/20 border border-slate-800 rounded-md shadow-xl w-full min-w-[240px] md:min-w-[440px] "
+              onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            >
+              <p className="lg:hidden text-sm">Pinch to zoom, drag to rotate</p>
+              <p className="hidden lg:block">
+                Use scroll wheel to zoom, drag mouse to rotate
+              </p>
+              <hr className="mt-2 mb-4 text-slate-700" />
+              <div className="text-sm md:text-base text-gray-300">
+                <span className="px-2 py-1 bg-slate-800 text-white rounded-sm">
+                  25.09.24
+                </span>
+                <div className="flex flex-col py-1.5">
+                  <p>• Ver 1.0 release</p>
+                  <p>• Initial question asked</p>
+                </div>
+              </div>
+              {/* <hr className="pt-2 text-slate-700" /> */}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Command Bar Search */}
       <CommandBar
