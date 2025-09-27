@@ -402,8 +402,8 @@ export default function InteractiveSphere() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50" // <-- full screen clickable backdrop
-            onClick={() => setIsOpen(false)} // closes when clicking backdrop
+            className="fixed bottom-16 md:bottom-22 left-6 flex items-center justify-center z-50"
+            onClick={() => setIsOpen(false)}
           >
             <motion.div
               key="popup"
@@ -411,8 +411,9 @@ export default function InteractiveSphere() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="absolute bottom-16 md:bottom-22 left-6 p-4 bg-black/20 border border-slate-800 rounded-md shadow-xl w-[240px] md:w-[440px]"
-              onClick={(e) => e.stopPropagation()}
+              className="p-4 bg-black/20 border border-slate-800 rounded-md shadow-xl w-full min-w-[240px] md:min-w-[440px] "
+              onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+              //
             >
               <p className="lg:hidden text-sm">Pinch to zoom, drag to rotate</p>
               <p className="hidden lg:block">
@@ -431,11 +432,11 @@ export default function InteractiveSphere() {
                   <p>• Initial question asked</p>
                 </div>
               </div>
+              {/* <hr className="pt-2 text-slate-700" /> */}
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Command Bar Search */}
       <CommandBar
         isOpen={isSearchOpen}
