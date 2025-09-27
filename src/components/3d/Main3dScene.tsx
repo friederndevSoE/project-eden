@@ -352,7 +352,7 @@ export default function InteractiveSphere() {
 
       {/* Floating Search Button */}
       <button
-        className="fixed bottom-6 right-6 bg-white text-black rounded-full px-4 py-2 shadow-lg z-40 flex items-center gap-2 cursor-pointer"
+        className="fixed bottom-6 right-6 bg-gray-300/10 hover:bg-gray-300/30 transition-all duration-200 ease-linear text-black rounded-full px-4 py-2 shadow-lg z-40 flex items-center gap-2 cursor-pointer"
         onClick={() => setIsSearchOpen(true)}
       >
         <svg
@@ -363,11 +363,11 @@ export default function InteractiveSphere() {
           viewBox="0 0 1664 1664"
         >
           <path
-            fill="#000000"
+            fill="#ffffff"
             d="M1152 704q0-185-131.5-316.5T704 256T387.5 387.5T256 704t131.5 316.5T704 1152t316.5-131.5T1152 704zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124q-143 0-273.5-55.5t-225-150t-150-225T0 704t55.5-273.5t150-225t225-150T704 0t273.5 55.5t225 150t150 225T1408 704q0 220-124 399l343 343q37 37 37 90z"
           ></path>
         </svg>
-        <span className="hidden md:block mt-0.5 ">Search</span>
+        <span className="hidden md:block mt-0.5 text-white ">Search</span>
       </button>
 
       {/* Patch notes button */}
