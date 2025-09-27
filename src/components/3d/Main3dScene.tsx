@@ -425,6 +425,9 @@ export default function InteractiveSphere() {
                 </span>
                 <div className="flex flex-col py-1.5">
                   <p>• Ver 1.0 release</p>
+                  <p>
+                    • Tr.Model: <span className="underline">Gemini 2.5</span>
+                  </p>
                   <p>• Initial question asked</p>
                 </div>
               </div>
