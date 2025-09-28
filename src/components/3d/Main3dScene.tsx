@@ -281,11 +281,11 @@ export default function InteractiveSphere() {
   const handleDotClick = (id: ProjectId) => {
     setSelectedDots((prev) => {
       const newSet = new Set(prev);
-      newSet.add(id); // ✅ always keep it once clicked
+      newSet.add(id); // always keep it once clicked
       return newSet;
     });
 
-    // ✅ always open modal, even if already selected
+    // always open modal, even if already selected
     setTimeout(() => openModal(id), 0);
   };
 
@@ -317,6 +317,8 @@ export default function InteractiveSphere() {
     <div className="fixed inset-0 z-0 ">
       {/* 3D Canvas */}
       <Canvas camera={{ position: [2, 2, 2], fov: 60 }}>
+        <color attach="background" args={["#000000"]} />
+
         <ambientLight intensity={0.9} />
         <pointLight position={[5, 5, 5]} />
 
