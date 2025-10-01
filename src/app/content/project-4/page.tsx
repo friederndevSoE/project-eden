@@ -45,7 +45,7 @@ export default function PasswordGate() {
     inputsRef.current[0]?.focus();
   };
   const handleChange = (index: number, raw: string) => {
-    if (!/^[a-zA-Z]?$/.test(raw)) return; // only letters or empty
+    if (!/^[a-zA-Z0-9]?$/.test(raw)) return; // only letters, numbers, or empty
     const val = raw.toUpperCase();
     const next = [...values];
     next[index] = val;
@@ -582,7 +582,7 @@ export default function PasswordGate() {
               In that era, Herrschers were bound to be humanity’s greatest enemy
               <br />
               <br />
-              Elyisa, the 2nd of the Flamechaser, the bearer of the Signet of
+              Elysia, the 2nd of the Flamechaser, the bearer of the Signet of
               Ego, the girl who deeply loves humanity … was a Herrscher. <br />
               <br />
               This world was slowly turning to dust. The last Herrscher struck,

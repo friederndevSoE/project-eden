@@ -80,6 +80,14 @@ Only indie games can do this, only they can have the guts to tell such a narrati
   //line break
   { text: "---", style: "hr" },
   {
+    text: `Here is my ID, I'd be glad if you want to compare: 
+    KbAn_CFcq_eeD3
+`,
+    style: "conversation",
+  },
+  //line break
+  { text: "---", style: "hr" },
+  {
     text: `The cog finally stops...
 `,
     style: "default",
