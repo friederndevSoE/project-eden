@@ -431,7 +431,7 @@ export default function InteractiveSphere() {
                   <p>
                     • Tr.Model: <span className="underline">Gemini 2.5</span>
                   </p>
-                  <p>• Enabling music is recommened while reading</p>
+                  <p>• Music is recommended while reading</p>
                   <p>• Initial question asked</p>
                 </div>
               </div>
