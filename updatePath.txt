@@ -1,0 +1,9 @@
+
+---------
+
+Update path
+
+- Create a new page in content folder (~8+)
+- Create a new 'project name' file in the data folder
+- Update the new tag data inside the Search Data file
+
