@@ -80,7 +80,7 @@ export default function PostContent({
       console.error("Failed to translate:", error);
       setSections(englishSections);
       setErrorMessage(
-        "⚠️ Dịch không thành công, Google có thể đã loại bỏ tính năng, vui lòng xem nội dung nguyên bản. "
+        "⚠️ Dịch không thành công, Google có thể đã cắt tính năng, vui lòng xem nội dung nguyên bản. "
       );
       setTimeout(() => setErrorMessage(null), 5000);
     } finally {
@@ -131,9 +131,13 @@ export default function PostContent({
             </motion.div>
             <div className="flex flex-col items-center mt-4 gap-3">
               <p className="text-center">
-                Google Gemini đang dịch nội dung sang tiếng Việt, thời gian chờ
-                có thể lên tới.
+                Google Gemini sẽ cung cấp nội dung tiếng Việt, thời gian chờ có
+                thể lên tới
                 <span className="underline"> 2 phút</span>.
+              </p>
+              <p>
+                Trong thời gian chờ, hữu khách có thể bấm play để đắm chìm vào
+                bản nhạc.
               </p>
             </div>
           </div>
