@@ -432,7 +432,6 @@ export default function InteractiveSphere() {
                     • Tr.Model: <span className="underline">Gemini 2.5</span>
                   </p>
                   <p>• Music is recommended while reading</p>
-                  <p>• Initial question asked</p>
                 </div>
               </div>
               {/* <hr className="pt-2 text-slate-700" /> */}

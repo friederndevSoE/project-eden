@@ -80,9 +80,9 @@ export default function PostContent({
       console.error("Failed to translate:", error);
       setSections(englishSections);
       setErrorMessage(
-        "⚠️ Failed to translate, sorry but Google might have remove the feature"
+        "⚠️ Dịch không thành công, Google có thể đã loại bỏ tính năng, vui lòng xem nội dung nguyên bản. "
       );
-      setTimeout(() => setErrorMessage(null), 3000);
+      setTimeout(() => setErrorMessage(null), 5000);
     } finally {
       setIsLoading(false);
     }
@@ -131,11 +131,9 @@ export default function PostContent({
             </motion.div>
             <div className="flex flex-col items-center mt-4 gap-3">
               <p className="text-center">
-                Đang được dịch sang tiếng Việt, thời gian chờ có thể lên tới
+                Google Gemini đang dịch nội dung sang tiếng Việt, thời gian chờ
+                có thể lên tới.
                 <span className="underline"> 2 phút</span>.
-              </p>
-              <p className="text-sm italic text-center">
-                Lưu ý: Nội dung chân thật nhất luôn nằm ở ngôn ngữ nguyên bản.
               </p>
             </div>
           </div>
