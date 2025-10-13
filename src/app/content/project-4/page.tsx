@@ -12,6 +12,7 @@ export default function PasswordGate() {
   const project = projectSearchData.find((p) => p.id === 4);
 
   const PASSWORD = "FADE";
+  const [failCount, setFailCount] = useState(0);
 
   const [values, setValues] = useState<string[]>(
     Array(PASSWORD.length).fill("")
@@ -105,14 +106,18 @@ export default function PasswordGate() {
     if (joined === PASSWORD) {
       setIsAuthorized(true);
       setError("");
-      sessionStorage.setItem("authorized", "true"); // ✅ remember in this session
+      sessionStorage.setItem("authorized", "true");
+      setFailCount(0); // reset fail count on success
     } else {
+      const newFailCount = failCount + 1;
+      setFailCount(newFailCount);
       setError("Incorrect password");
       setShake(true);
-      setTimeout(() => setShake(false), 400); // reset shake after animation
-      setTimeout(() => resetInputs(), 900); // clear inputs after short delay
+      setTimeout(() => setShake(false), 400);
+      setTimeout(() => resetInputs(), 900);
     }
   };
+
   if (isAuthorized) {
     return (
       <motion.div
@@ -1024,7 +1029,16 @@ export default function PasswordGate() {
           />
         ))}
       </motion.div>
-
+      {failCount >= 4 && (
+        <motion.p
+          className="text-gray-400 text-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          It's never outside the Courtyard
+        </motion.p>
+      )}
       <UnlockButton onClick={handleUnlock}></UnlockButton>
 
       <AnimatePresence>
