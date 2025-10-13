@@ -413,7 +413,7 @@ export default function InteractiveSphere() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 50 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="p-4 bg-black/20 border border-slate-800 rounded-md shadow-xl w-full min-w-[240px] md:min-w-[440px] "
+              className="p-4 bg-black/20 border border-slate-800 rounded-md shadow-xl w-full min-w-[240px]  "
               onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
               //
             >
@@ -424,12 +424,13 @@ export default function InteractiveSphere() {
               <hr className="mt-2 mb-4 text-slate-700" />
               <div className="text-sm md:text-base text-gray-300">
                 <span className="px-2 py-1 bg-slate-800 text-white rounded-sm">
-                  25.09.24
+                  25.09
                 </span>
                 <div className="flex flex-col py-1.5">
-                  <p>• Ver 1.0 release</p>
+                  <p>• Eden Courtyard official release</p>
                   <p>
-                    • Tr.Model: <span className="underline">Gemini 2.5</span>
+                    • Translation Model:{" "}
+                    <span className="underline">Gemini 2.5</span>
                   </p>
                   <p>• Music is recommended while reading</p>
                 </div>
