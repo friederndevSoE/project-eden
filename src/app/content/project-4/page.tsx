@@ -706,7 +706,7 @@ export default function PasswordGate() {
               There are times when the love is so overwhelming that it overrides
               your rational mind.
               <br />
-              Th ere are times when the love is so strong that you want it to
+              There are times when the love is so strong that you want it to
               override your rationality.
               <br />
               You dislike everything, you find it hard to accept yourself
@@ -731,7 +731,7 @@ export default function PasswordGate() {
               <br />
               <br />
               What you want to hear, what you want to feel at the moment, is
-              this another quest to find the nuances?Another complexity that
+              this another quest to find the nuances? Another complexity that
               requires energy and patience, to constantly confront and question,
               digging deeper again and again.
               <br />
