@@ -108,17 +108,7 @@ Turns out he lied, because I watched ~6 hours of videos in total... on the first
 `,
     style: "default",
   },
-  //line break
-  { text: "---", style: "hr" },
-  {
-    text: `This game focuses on the ‘novel’ part. I can make an argument that there is little ‘game’ here since 99% of the time, you would be pressing the A button to forward to the next dialogue, with the last 1% is choosing your save slot. With no mini game or interesting gameplay mechanic to spice things up, just ... simply read the story, like a book.
 
-A captivating book is a book you will fully enjoy and immerse yourself in regardless.
-
-I fondly remember during the last arc, when I screamed internally and told myself how about let’s not fricking press the damn A button to forward to the next scene, like a child who can’t sit straight watching the tension unfold in his favourite TV show.
-`,
-    style: "default",
-  },
   //line break
   { text: "---", style: "hr" },
   {
